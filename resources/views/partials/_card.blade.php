@@ -25,7 +25,7 @@
                 </div>
                 <p>{{$product->nb_vote}} avis</p>
             </div>
-            <p>{{$product->price}} fcfa</p>
+            <p>{{$product->price}} Fcfa</p>
             <button>
                 {{method_field('POST')}}
                 <a href="{{route('panier.store',$product->id)}}">

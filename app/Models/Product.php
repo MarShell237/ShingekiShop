@@ -31,6 +31,10 @@ class Product extends Model
         return Str::slug($this->name);
     }
 
+    public function getPriceAttribute($attribute){
+        return number_format($attribute,0,' ','.');
+    }
+
 
 }
 
