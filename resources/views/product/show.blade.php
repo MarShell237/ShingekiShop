@@ -74,8 +74,7 @@
         <h2>Produits similaires</h2>
         <div class="others-products">
             @forelse ($products as $product)
-            {{-- <card :valeur="{{$product}}"></card> --}}
-            @include('partials._card',$product)
+              <card :valeur="{{$product}}" slug="{{$product->getSlug()}}"></card>
             @empty
                 <h2>Aucun {{$filter_title}} Pour L'instant</h2>
             @endforelse

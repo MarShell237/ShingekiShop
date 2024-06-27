@@ -5,26 +5,25 @@
 @section('content')
     <main>
         <section>
-            <div class="images-accueil"></div>
+          <div class="images-accueil"></div>
         </section>
 
         <section>
             <h1>Les meilleurs Mangas</h1>
             <div class="content">
-                @foreach ($bestMangas as $product)
+              @foreach ($bestMangas as $product)
                 <card :valeur="{{$product}}" slug="{{$product->getSlug()}}"></card>
-                    {{-- @include('partials._card',$product) --}}
-                @endforeach
+                {{-- @include('partials._card',$product) --}}
+              @endforeach
             </div>
         </section>
 
         <section>
-            <h1>Les meilleurs Figurines</h1>
-            <div class="content">
-                @foreach ($bestFigurines as $product)
-                    {{-- <card :valeur="{{$product}}"></card> --}}
-                    @include('partials._card',$product)
-                @endforeach
+          <h1>Les meilleurs Figurines</h1>
+          <div class="content">
+            @foreach ($bestFigurines as $product)
+              <card :valeur="{{$product}}" slug="{{$product->getSlug()}}"></card>
+              @endforeach
             </div>
         </section>
 
@@ -32,8 +31,7 @@
             <h1>Les meilleurs Habits</h1>
             <div class="content">
                 @foreach ($bestHabits as $product)
-                    {{-- <card :valeur="{{$product}}"></card> --}}
-                    @include('partials._card',$product)
+                  <card :valeur="{{$product}}" slug="{{$product->getSlug()}}"></card>
                 @endforeach
             </div>
         </section>
@@ -42,8 +40,7 @@
             <h1>Les meilleurs Accesoires</h1>
             <div class="content">
                 @foreach ($bestAccesoires as $product)
-                    {{-- <card :valeur="{{$product}}"></card> --}}
-                    @include('partials._card',$product)
+                  <card :valeur="{{$product}}" slug="{{$product->getSlug()}}"></card>
                 @endforeach
             </div>
         </section>
@@ -52,8 +49,7 @@
             <h1>Les meilleurs Sons</h1>
             <div class="content">
                 @foreach ($bestSons as $product)
-                    {{-- <card :valeur="{{$product}}"></card> --}}
-                    @include('partials._card',$product)
+                    <card :valeur="{{$product}}" slug="{{$product->getSlug()}}"></card>
                 @endforeach
             </div>
         </section>
@@ -62,8 +58,7 @@
             <h1>Les meilleurs Jeux videos</h1>
             <div class="content">
                 @foreach ($bestGame as $product)
-                    {{-- <card :valeur="{{$product}}"></card> --}}
-                    @include('partials._card',$product)
+                  <card :valeur="{{$product}}" slug="{{$product->getSlug()}}"></card>
                 @endforeach
             </div>
         </section>

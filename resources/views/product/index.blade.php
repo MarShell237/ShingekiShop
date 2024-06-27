@@ -8,8 +8,8 @@
         <section>
             @forelse ($products as $product)
                 {{-- <card :valeur="{{$product}}"></card> --}}
-                @include('partials._card',$product)
-            @empty
+                <card :valeur="{{$product}}" slug="{{$product->getSlug()}}"></card>
+                @empty
                 <h2>Aucun {{$filter_title}} Pour L'instant</h2>
             @endforelse
         </section>
