@@ -1,0 +1,157 @@
+.card{
+    width: 300px;
+    height: 400px;
+    background-color: rgb(255, 255, 255,0.12);
+    border-radius: 15px;
+    box-shadow: 5px 5px 4px black;
+}
+
+.card .card-top{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: rgb(255, 255, 255,0.20);
+    border-radius: 15px 15px 0 0;
+    margin: 0;
+    padding: 0;
+}
+
+.card .card-top img{
+    width: 200px;
+    height: 200px;
+}
+
+.card .card-top .fa-heart{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    scale: 2;
+    transition: 2s;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    cursor: pointer;
+}
+
+/* .card .card-top input{
+    display: none;
+} */
+
+.card .card-bottom{
+    position: relative;
+    padding: 10px;
+}
+
+.card .card-name{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+}
+
+.card .card-name a{
+    text-decoration: none;
+    color: white;
+    font-size: x-large;
+}
+
+.card .card-name a:hover{
+    text-decoration: underline;
+}
+
+.card .card-bottom > p{
+    font-size:large;
+    padding: 0;
+    margin: 0;
+}
+
+.card .card-bottom > p:nth-of-type(2){
+    text-align: center;
+    font-size: xx-large;
+}
+
+.note{
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+.note p{
+    color: #6B5100;
+    padding-left: 20px;
+    font-size:x-large;
+}
+
+.stars{
+    display: flex;
+}
+
+.star{
+    width: 30px;
+    height: 30px;
+    background-color: grey;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    transition: 200ms;
+}
+
+.active{
+    background-color: gold;
+}
+
+.card .card-bottom button{
+    position: absolute;
+    color: white;
+    border-width: 0;
+    padding: 10px;
+    border-radius: 5px;
+    right: 10px;
+    background-color: #142C4C;
+    transition: 200ms;
+    cursor: pointer;
+}
+.card .card-bottom button a{
+    text-decoration: none;
+    color: white;
+}
+
+.card .card-bottom button:hover a, .card .card-bottom button:hover .fa-cart-shopping{
+    color: gold;
+}
+
+.card .card-bottom button:active{
+    scale: 1.05;
+}
+
+@keyframes pulse {
+    0%{
+        scale: 2;
+        color: pink;
+    }
+
+    15%{
+        scale: 3.5;
+        color: palevioletred;
+    }
+
+    30%{
+        scale: 2;
+        color: rgb(207, 3, 71);
+    }
+
+    60%{
+        scale: 3.3;
+        color: rgb(63, 21, 21);
+    }
+
+    80%{
+        scale: 2;
+        color: rgb(252, 43, 43);
+    }
+
+    100%{
+        scale: 2;
+        color: red;
+    }
+}

@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
+
+
+section:first-of-type{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Abel;
+}
+
+/* images d'accueil */
+.images-accueil,.images-accueil::before,.images-accueil::after{
+    animation-duration: 70s;
+    animation-iteration-count: infinite;
+
+}
+
+.images-accueil{
+    margin: 70px 0;
+    background: url('./../images/acceuil.jpg');
+    background-repeat: repeat-x;
+    width: 90vw;
+    height: 50vh;
+    background-size: cover contain;
+    background-position: center;
+    position: relative;
+    animation-name: changeBackground;
+    border-radius: 15px;
+    box-shadow: 0 0 14px white;
+}
+
+.images-accueil::before,.images-accueil::after{
+    position: absolute;
+    display: block;
+    width: 100%;
+    text-align: center;
+    color: white;
+    background: rgba(0,0,0,0.4);
+}
+
+.images-accueil::before{
+    content: '"Shinzo wo sasageyo"';
+    bottom: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    animation-name: beforeContent;
+}
+
+.images-accueil::after{
+    content: "Tout les eldiens";
+    bottom: 0;
+    border-radius: 0 0 15px 15px;
+    animation-name: afterContent;
+}
+
+
+/* section:not(:first-of-type) > div{
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+} */
+
+h2{
+    text-align: center;
+}
+
+/*footer*/
+
+footer{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: black;
+    height: 200px;
+    margin-top: 30px;
+}
+
+
+footer > a{
+    all: unset;
+    cursor: pointer;
+}
+
+footer p,footer a{
+    font-size: x-large;
+    font-family: sans-serif;
+}
+
+footer .social-icons{
+    display: flex;
+    justify-content: space-between;
+    width: 150px;
+}
+
+footer .social-icons a{
+    font-size: xx-large;
+    color: white;
+}
+
+footer .social-icons a:hover .fa-whatsapp{
+    color: rgb(44, 230, 20);
+}
+
+footer .social-icons a:hover .fa-facebook{
+    color: blue;
+}
+
+footer .social-icons a:hover .fa-instagram{
+    color: #8A3AB9;
+}
+
+@keyframes changeBackground{
+    0%{
+    background-image: url('./../images/acceuil.jpg');
+    }
+
+    20%{
+        background-image: url('./../images/img1.jpg');
+    }
+
+    40%{
+        background-image: url('./../images/img2.jpg');
+    }
+
+    60%{
+    background-image: url('./../images/img3.jpg');
+    }
+
+    80%{
+        background-image: url('./../images/img4.jpg');
+    }
+
+    100%{
+        background-image: url('./../images/acceuil.jpg');
+        }
+}
+
+@keyframes beforeContent {
+    0%{
+        content: '"Shinzo wo sasageyo"';
+    }
+    20%{
+        content: '"Si le monde veut prendre ma liberte je prendrais la leur avant qu\'il ne prenne la mienne"';
+    }
+    40%{
+        content: '"Inutile d\'essayer de raviver ma haine."';
+        background-position: top;
+    }
+    60%{
+        content: '"Avançons ! Même si ce n\'est qu\'un leurre, continuons à avancer !"';
+    }
+    80%{
+        content: '"Au dela de la mer il y a nos ennemies"';
+    }
+    100%{
+        content: '"Shinzo wo sasageyo"';
+    }
+
+}
+
+@keyframes afterContent {
+    0%{
+        content: "Tous les eldiens de paradis";
+    }
+    20%{
+        content: "Eren Yeager";
+    }
+    40%{
+        content: "Reiner Braun";
+    }
+    60%{
+        content: "Erwin Smith";
+    }
+    80%{
+        content: "Eren Yeager";
+    }
+    100%{
+        content: "Tous les eldiens de paradis";
+    }
+}
+
+/* le corps de l'accueil */
+section h1{
+    font-size: 3em;
+    font-family: sans-serif;
+    font-weight: 400;
+    text-align: left;
+    text-transform: capitalize;
+}
+
+section .content{
+    display: flex;
+    gap: 15px;
+}

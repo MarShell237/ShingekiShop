@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
+@import url('resources/css/variables.css');
+
+.input-container{
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+}
+
+.input-container label{
+    color: rgb(255, 255, 255);
+    font-weight: 300;
+    margin-bottom: 8px;
+}
+
+input,textarea{
+    all: unset;
+    width: 100%;
+    padding: 10px;
+    font-size: large;
+    font-family: Abel;
+    color: rgb(255, 255, 255);
+    border:1px solid grey;
+    border-radius: 5px;
+}
+
+textarea{
+    min-height: 90px;
+    resize: vertical;
+}
+
+input:focus{
+    outline-color: unset;
+    border-color: unset;
+    box-shadow: 0 0 10px var(--couleur-input),0 0 5px rgb(0, 191, 255);
+}
+
+.input-container small{
+    color: crimson;
+    font-weight: bold;
+    text-shadow: .5px .5px 0 black;
+}
+
+
+.is-invalidate{
+    border-color: crimson;
+    box-shadow: 0 0 10px crimson;
+}
+
+.is-invalidate:focus{
+    box-shadow: 0 0 10px crimson;
+}

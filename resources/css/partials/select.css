@@ -1,0 +1,20 @@
+select{
+    all: unset;
+    width: 100%;
+    padding: 10px;
+    font-size: large;
+    font-family: Abel;
+    color: rgb(255, 255, 255);
+    border:1px solid grey;
+    border-radius: 5px;
+}
+
+select{
+    background-color: rgb(48, 48, 48);
+}
+
+select:focus{
+    outline-color: unset;
+    border-color: unset;
+    box-shadow: 0 0 10px var(--couleur-input),0 0 5px rgb(0, 191, 255);
+}

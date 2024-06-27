@@ -1,0 +1,98 @@
+section:first-of-type{
+    display: flex;
+    column-gap: 15px;
+    margin: 70px 0;
+}
+
+.small-layouts{
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
+
+.layout-description,.layout-price,.layout-information-livraison{
+    background-color: rgb(255, 255, 255,0.12);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.layout-description{
+    display: flex;
+    column-gap: 15px;
+    width: 80%;
+    height: 600px;
+}
+
+.layout-description .left{
+    width: 50%;
+    height: 100%;
+}
+
+.layout-description .left img{
+    width: 400px;
+    height: 100%;
+    border-radius:
+    10px;
+}
+
+.layout-description .right{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.layout-description .right .right-down{
+    margin: 0 0 50px 70px;
+    align-self: center;
+}
+
+.layout-price input,.layout-information-livraison select{
+    width: 90%;
+}
+.layout-price .price{
+    color: gold;
+    font-weight: bold;
+    font-size: 50px;
+    text-transform: capitalize;
+    text-align: center;
+    margin-top: 0;
+}
+
+.layout-price button{
+    color: white;
+    border-width: 0;
+    padding: 10px;
+    border-radius: 5px;
+    right: 10px;
+    background-color: #142C4C;
+    transition: 200ms;
+    cursor: pointer;
+}
+.layout-price button a{
+    text-decoration: none;
+    color: white;
+}
+
+.layout-price button:hover a, .layout-price button:hover .fa-cart-shopping{
+    color: gold;
+}
+
+.layout-price button:active{
+    scale: 1.05;
+}
+
+section:last-of-type h2{
+    text-transform: capitalize;
+    font-size: 50px;
+}
+.others-products{
+    display: flex;
+    column-gap: 10px;
+    margin-bottom: 50px;
+}
+
+.right .right-up .note .note-produit{
+    color: white;
+    font-weight: 100;
+    font-size: 18px;
+}
