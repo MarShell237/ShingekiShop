@@ -1,7 +1,7 @@
 body{
     margin: 0;
     padding: 10px;
-    background-color: rgb(235, 229, 229);
+    /* background-color: rgb(235, 229, 229); */
 }
 
 section{
@@ -9,7 +9,9 @@ section{
 }
 
 img{
-    width: 100%;
+    width: auto;
+    margin: 0 38%;
+    height: 100vh;
 }
 
 h1{

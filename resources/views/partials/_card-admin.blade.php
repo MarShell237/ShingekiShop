@@ -7,7 +7,8 @@
 <div class="cards-accueil">
     <div class="card">
         <div class="card-top">
-            <img src="{{$product->imageUrl()}}" alt="">
+            {{-- <img src="{{$product->imageUrl()}}" alt=""> --}}
+            <img src="{{$product->image}}" alt="">
             {{-- <label for="heart"><i class="fa fa-heart" id="fa-heart"></i></label>
             <input type="checkbox" name="" id="heart"> --}}
         </div>

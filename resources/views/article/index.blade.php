@@ -1,6 +1,6 @@
 @extends('base')
 @section('title','Shingeki Shop - Accueil')
-@vite(['resources/css/client/index.css','resource/css/partials/card-article.css'])
+@vite(['resources/css/client/index.css','resources/css/partials/card-article.css'])
 {{-- @vite(['resources/js/heart.js','resources/js/star.js','resources/css/card.css']) --}}
 @section('content')
     <main>

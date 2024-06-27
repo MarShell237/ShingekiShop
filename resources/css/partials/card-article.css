@@ -3,7 +3,6 @@
     border-radius: 10px;
     background-color: rgb(255, 255, 255,0.20);    
     position: relative;
-    padding-bottom: 50px;
 }
 
 .card-article img{
@@ -50,12 +49,15 @@
 
 button{
     all: unset;
+    font-family: Abel;
 }
 
-.buttons{
+.card-article .buttons{
     display: flex;
     justify-content: flex-end;
     column-gap: 15px;
+    margin: 0;
+    padding: 0;
 }
 
 a{
