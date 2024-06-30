@@ -31,9 +31,10 @@ Route::prefix('/admin')->name('admin.')->group(function (){
     Route::resource('/article',ArticleController::class)->except(['show']);
 });
 Route::get('/panier',[PanierController::class,'index'])->name('panier.index')->middleware('auth');
-Route::get('/panier/store/{id}',[PanierController::class,'store'])->name('panier.store')->middleware('auth');
+Route::post('/panier/store/{product}',[PanierController::class,'store'])->name('panier.store')->middleware('auth');
 Route::delete('/help/destroy/{id}',[HelpController::class,'destroy'])->name('help.destroy')->middleware('auth');
-Route::get('/panier/destroy/{id}',[PanierController::class,'destroy'])->name('panier.destroy')->middleware('auth');
+Route::get('/panier/destroy/{product}',[PanierController::class,'destroy'])->name('panier.destroy')->middleware('auth');
+Route::get('/panier/destroyAll',[PanierController::class,'destroyAll'])->name('panier.destroyAll')->middleware('auth');
 
 Route::get('/facture/{id}',[FactureController::class,'store'])->name('facture.store')->middleware('auth');
 Route::put('/buy',[HelpController::class,'buy'])->name('buy')->middleware('auth');

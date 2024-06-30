@@ -20,7 +20,7 @@
                     <p>{{props.valeur.nb_vote}}</p>
                 </div>
                 <p>{{props.valeur.price}} fcfa</p>
-                <button>
+                <button @click="ajouterAuPanier">
                     <span>Ajouter au panier</span>
                     <i class="fa fa-cart-shopping"></i>
                 </button>
@@ -31,7 +31,8 @@
 
 
 <script setup>
-  import { onMounted, ref } from 'vue';
+  import axios from 'axios';
+import { onMounted, ref } from 'vue';
 
   const props = defineProps(['valeur','slug'])
   const img =props.valeur.image
@@ -49,6 +50,11 @@
   function showProduct(){
     axios.get(`/client/product/${props.slug}/${props.valeur.id}`)
     .then(()=>{window.location.href=`/client/product/${props.slug}/${props.valeur.id}`})
+  }
+
+  function ajouterAuPanier(){
+    axios.post(`/panier/store/${props.valeur.id}`).
+    then(()=>{window.location.href=`/panier`})
   }
 </script>
 

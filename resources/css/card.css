@@ -116,7 +116,7 @@
     color: white;
 }
 
-.card .card-bottom button:hover a, .card .card-bottom button:hover .fa-cart-shopping{
+.card .card-bottom button:hover span, .card .card-bottom button:hover .fa-cart-shopping{
     color: gold;
 }
 

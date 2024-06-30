@@ -26,13 +26,14 @@
                 <p>{{$product->nb_vote}} avis</p>
             </div>
             <p>{{$product->price}} Fcfa</p>
-            <button>
-                {{method_field('POST')}}
-                <a href="{{route('panier.store',$product->id)}}">
-                    <span >Ajouter au panier</span>
-                </a>
+            <form action="{{route('panier.store',$product)}}" method="POST">
+              @csrf
+              <button>
+                <span >Ajouter au panier</span>
                 <i class="fa fa-cart-shopping"></i>
             </button>
+          </form>
+          {{-- <a href="{{route('panier.store',$product->id)}}"></a> --}}
         </div>
     </div>
 </div>

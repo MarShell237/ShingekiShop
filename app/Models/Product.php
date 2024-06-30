@@ -31,8 +31,8 @@ class Product extends Model
         return Str::slug($this->name);
     }
 
-    public function getPriceAttribute($attribute){
-        return number_format($attribute,0,' ','.');
+    public function getPrice(){
+        return number_format($this->price,0,' ','.');
     }
 
 
