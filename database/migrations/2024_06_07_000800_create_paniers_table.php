@@ -15,12 +15,9 @@ return new class extends Migration
     {
         Schema::create('paniers', function (Blueprint $table) {
             $table->id();
-            // $table->float('prix');
-            // $table->float('nb_produit');
+            $table->integer('quantite')->default(1);
             $table->foreignIdFor(Product::class)->constrained();
             $table->foreignIdFor(User::class)->constrained();
-            // $table->string('name_product');
-            // $table->string('image');
             $table->timestamps();
         });
     }

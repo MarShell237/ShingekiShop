@@ -17,8 +17,8 @@
                 <div>
                     <label for="quantite" style="font-size:20px">quantity:</label>
                     <br>
-                    @include('partials._input',['type'=>'number','name'=>'quantite','placeholder'=>'entrer le prix du produit','value'=>1])
-                    <h2>prix:  <span style="color: gold">{{number_format($panier->product->price,0,' ','.')}} fcfa</span></h2>
+                    @include('partials._input',['type'=>'number','name'=>'quantite','placeholder'=>'entrer le prix du produit','value'=>$panier->quantite])
+                    <h2>prix:  <span style="color: gold">{{$panier->product->getPrice()}} fcfa</span></h2>
                 <form action="{{route('help.destroy',$panier->id)}}" method="post">
                     @csrf
                     @method("DELETE")

@@ -30,11 +30,11 @@ class DatabaseSeeder extends Seeder
         $villes = ['Dscang,Cameroun','Bafoussam,Cameroun','Yaounde,Cameroun','Douala,Cameroun','Bertoua,Cameroun'];
 
         $users = [
-            ['Marcel J. DJIOFACK','697815095','djiofackjason57@gmail.com','1234'],
-            ['cicero','89898989','bounoucicero@gmail.com','cice;'],
-            ['CHOUNA Lucresse','89898989','lucressechouna640@gmail.com','lucressePwd'],
-            ['LONKENG grace','89898989','lonkenggrace@gmail.com','gracePwd'],
-            ['ZEBAZE julie','89898989','zebazejulie6@gmail.com','juliePwd']
+            ['Marcel J. DJIOFACK','697815095','djiofackjason57@gmail.com','1234','Shingeki no Kyojin','marcel.jpg'],
+            ['cicero','89898989','bounoucicero@gmail.com','cice','Kō no Kyojin','cicero.jpg'],
+            ['CHOUNA Lucresse','89898989','lucressechouna640@gmail.com','lucressePwd','Onna-gata no Kyojin','lucresse.jpg'],
+            ['LONKENG Grace','89898989','lonkenggrace@gmail.com','gracePwd','Agito no Kyojin','grace.jpg'],
+            ['ZEBAZE julie','89898989','zebazejulie6@gmail.com','juliePwd','Sentsui no Kyojin','julie.jpg']
         ];
 
         $super_users = [
@@ -64,7 +64,9 @@ class DatabaseSeeder extends Seeder
                 "name"=>$user[0],
                 "phone"=>$user[1],
                 "email"=>$user[2],
-                "password"=> Hash::make($user[3])
+                "password"=> Hash::make($user[3]),
+                "nametitan"=>$user[4],
+                "image" => $user[5]
             ]);
         }
         

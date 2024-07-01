@@ -4,7 +4,8 @@
 
 
 @extends('base')
-@vite(['resources/css/show.css','resources/css/partials/input.css','resources/css/partials/select.css','resources/js/star.js','resources/css/stare.css'])
+@vite(['resources/css/show.css','resources/css/star.css','resources/css/partials/input.css','resources/css/partials/select.css'])
+@vite(['resources/js/star.js'])
 @section('title',$product->getSlug())
 
 @section('content')
@@ -35,37 +36,50 @@
                 <div class="right-down">
                     <h3>Donnez votre avis</h3>
                     <div class="stars">
-                        <div class="stare"></div>
-                        <div class="stare"></div>
-                        <div class="stare"></div>
-                        <div class="stare"></div>
-                        <div class="stare"></div>
+                        <div class="star-2"></div>
+                        <div class="star-2"></div>
+                        <div class="star-2"></div>
+                        <div class="star-2"></div>
+                        <div class="star-2"></div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="small-layouts">
             <div class="layout-price">
-                <p class="price">{{$product->price}} fcfa</p>
+                <p class="price">{{$product->getPrice()}} fcfa</p>
                 <div class="quatites">
                     <form action="">
-                        {{-- @include('partials._input',['type'=>'number','label'=>'Quantites:','name'=>'quantite','placeholder'=>'entrer le nombre d\'articles que vous desirez','value'=>1]) --}}
+                      <label for="quantite"  class="label">Quantites:</label>
+                        @include('partials._input',['type'=>'number','name'=>'quantite','placeholder'=>'entrer le nombre d\'articles que vous desirez','value'=>1])
                     </form>
                 </div>
-                <button>
-                    {{method_field('POST')}}
-                    <a href="{{route('panier.store',$product->id)}}">
-                        <span>Ajouter au panier</span>
-                    </a>
-                    <i class="fa fa-cart-shopping"></i>
-                </button>
+              <div class="btn-action">
+                  <form action="{{route('panier.store',$product)}}" method="POST" style="margin:0;">
+                    @csrf
+                    <button>
+                      <span >Ajouter au panier</span>
+                      <i class="fa fa-cart-shopping"></i>
+                    </button>
+                  </form>
+                  <div>
+                    <label for="checkbox-show" ><i class="fa fa-heart fa-heart-show" id="fa-heart-show"></i></label>
+                    <input type="checkbox-show" name="" id="checkbox-show">
+                  </div>
+                </div>
             </div>
             <div class="layout-information-livraison">
-                <h3>informations de livraison</h3>
-                <span>Numero de telephone:</span>
-                <p>a remplir</p>
+                <h3>Informations de livraison</h3>
+                <span class="label">Numero de telephone:</span>
+                @auth
+                  <p class="phone">{{Auth::user()->phone}}</p>
+                @endauth
+                @guest
+                  <p class="phone">Vous devez etre connecter</p>
+                @endguest
                 <form action="">
-                    {{-- @include('partials._select',['label'=>'Adresse de livraison:','name'=>'villes_id','value'=> '','categories'=>$villes]) --}}
+                  <label for="ville_id"  class="label">Adresse de livraison:</label>
+                    @include('partials._select',['name'=>'villes_id','value'=> '','categories'=>$villes])
                 </form>
             </div>
         </div>

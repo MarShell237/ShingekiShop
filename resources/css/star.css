@@ -2,7 +2,7 @@
     display: flex;
 }
 
-.stare{
+.star,.star-2{
     width: 30px;
     height: 30px;
     background-color: grey;

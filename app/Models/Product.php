@@ -32,7 +32,7 @@ class Product extends Model
     }
 
     public function getPrice(){
-        return number_format($this->price,0,' ','.');
+        return number_format($this->price,0,' ',' ');
     }
 
 

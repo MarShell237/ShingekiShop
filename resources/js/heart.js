@@ -1,8 +1,9 @@
-const heart = document.getElementById('heart')
+const checkbox = document.getElementById('checkbox')
 const faHeart = document.getElementById('fa-heart')
 
+console.log(checkbox);
 faHeart.addEventListener('click',()=>{
-    if(heart.checked){
+    if(checkbox.checked){
         // faHeart.style.color = 'red';
         faHeart.style.animationName = 'pulse'; 
     } else{

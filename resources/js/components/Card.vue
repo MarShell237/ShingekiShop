@@ -19,7 +19,7 @@
                     </div>
                     <p>{{props.valeur.nb_vote}}</p>
                 </div>
-                <p>{{props.valeur.price}} fcfa</p>
+                <p>{{formatteNombre(props.valeur.price)}} fcfa</p>
                 <button @click="ajouterAuPanier">
                     <span>Ajouter au panier</span>
                     <i class="fa fa-cart-shopping"></i>
@@ -38,15 +38,24 @@ import { onMounted, ref } from 'vue';
   const img =props.valeur.image
   const myHeart = ref(false);
   let heartInput = ref(null);
+
+//events lisners
   function pulseHeart(){
     myHeart.value = heartInput.value.checked;
   }
-
 
   function verifyIfIsActive(isOn){
     return isOn > 0;
   }
 
+
+//helpers
+  function formatteNombre(nombre) {
+  const regex = /(\d)(?=(?:\d{3})+$)/g;
+  return nombre.toString().replace(regex, '$1 ');
+  }
+
+//requettes http
   function showProduct(){
     axios.get(`/client/product/${props.slug}/${props.valeur.id}`)
     .then(()=>{window.location.href=`/client/product/${props.slug}/${props.valeur.id}`})
@@ -54,7 +63,8 @@ import { onMounted, ref } from 'vue';
 
   function ajouterAuPanier(){
     axios.post(`/panier/store/${props.valeur.id}`).
-    then(()=>{window.location.href=`/panier`})
+    then(()=>{window.location.href=`/panier`}).
+    catch(()=>{window.location.href='/inscription'})
   }
 </script>
 
@@ -109,6 +119,7 @@ import { onMounted, ref } from 'vue';
     font-family: sans-serif;
     display: -webkit-box;
     -webkit-box-orient: vertical;
+    line-clamp: 1;
     -webkit-line-clamp: 1;
     overflow: hidden;
   }

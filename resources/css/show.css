@@ -67,13 +67,14 @@ section:first-of-type{
     background-color: #142C4C;
     transition: 200ms;
     cursor: pointer;
+    width: 170px;
 }
 .layout-price button a{
     text-decoration: none;
     color: white;
 }
 
-.layout-price button:hover a, .layout-price button:hover .fa-cart-shopping{
+.layout-price button:hover span, .layout-price button:hover .fa-cart-shopping{
     color: gold;
 }
 
@@ -95,4 +96,70 @@ section:last-of-type h2{
     color: white;
     font-weight: 100;
     font-size: 18px;
+}
+
+#checkbox-show{
+  display: none;
+}
+
+.btn-action{
+  display: flex;
+  justify-content: space-between ;
+  align-items: center;
+  gap: 10px;
+}
+
+.fa-heart-show{
+  padding: 3px;
+  margin-right: 15px;
+  scale: 2;
+  border: 1px solid rgb(255, 255, 255,.3);
+  border-radius: 50%;
+  animation-duration: 5s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+  cursor: pointer;
+}
+
+.label{
+  text-decoration: underline;
+}
+.phone{
+  font-weight: bold;
+  color: #006eff;
+}
+
+.layout-information-livraison h3{
+  font-size: 22px;
+  text-align: center;
+}
+
+@keyframes pulse {
+  0%{
+    scale: 2;
+    color: pink;
+  }
+  
+  15%{
+    color: greenyellow;
+  }
+  
+  30%{
+    color: rgb(207, 3, 71);
+  }
+  
+  60%{
+    scale: 3;
+    color: rgb(252, 43, 43);
+  }
+  
+  80%{
+    color: green;
+  }
+
+  100%{
+    scale: 2;
+    color: red;
+    text-shadow: .5px 0 1px black;
+  }
 }

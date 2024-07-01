@@ -37,10 +37,10 @@
             </div>
             <div class="admin-infos">
                 <div>
-                    <span>admin name</span>
-                    <small>nom du titan</small>
+                    <span>{{Auth::user()->name}}</span>
+                    <small>{{Auth::user()->nametitan}}</small>
                 </div>
-                <img src="{{Vite::asset('resources/images/81.jpg')}}" alt="">
+                <img src="{{Vite::asset('resources/images/admin/'.Auth::user()->image)}}" alt="">
             </div>
         </div>
 
