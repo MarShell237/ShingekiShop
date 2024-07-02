@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Panier;
 use App\Models\Product;
+use App\Models\Ville;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,10 +19,11 @@ class PanierController extends Controller
     {
       $paniers=Panier::where('user_id',Auth::user()->id)->get();
       $prixTotal = 0;
-      foreach ($paniers as $key => $value) {
-        $prixTotal += $value->product->price;
+      foreach ($paniers as $key => $panier) {
+        $prixTotal += $panier->product->price * $panier->quantite;
       }
-      return view('panier.index',compact('paniers','prixTotal'));
+      $villes=Ville::all();
+      return view('panier.index',compact('paniers','prixTotal','villes'));
     }
 
     /**
@@ -32,9 +34,37 @@ class PanierController extends Controller
       $newPanier = new Panier();
       $newPanier->user_id = Auth::user()->id;
       $newPanier->product_id = $product->id;
+      $newPanier->ville_id = Auth::user()->ville_id;
       $newPanier->save();
       return redirect()->route('panier.index');
 
+    }
+
+    public function storeShow(Request $request,Product $product)
+    {
+      $data=$request->validate([
+        'quantite'=>'required|min:1|integer',
+        'default_city'=>'required',
+      ]);
+      $newPanier = new Panier();
+      $newPanier->user_id = Auth::user()->id;
+      $newPanier->product_id = $product->id;
+      $newPanier->quantite = $data['quantite'];
+      $newPanier->ville_id = $data['default_city'];
+      $newPanier->save();
+      return redirect()->route('panier.index');
+
+    }
+
+    public function update(Request $request,Panier $panier){
+      $data=$request->validate([
+        'quantite'=>'required|min:1|integer',
+        'ville_id'=>'required',
+      ]);
+      $panier->quantite=$data['quantite'];
+      $panier->ville_id=$data['ville_id'];
+      $panier->save();
+      return redirect()->route('panier.index');
     }
 
     /**

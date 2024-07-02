@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use App\Models\User;
+use App\Models\Ville;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,7 +12,7 @@ class AuthController extends Controller
 {
     function login(){
         // dd("paseer dans index");
-        return view('inscription');
+        return view('inscription',["villes" => Ville::all()]);
     }
     function doLogin(LoginRequest $request){
         $credentials = $request->validated();

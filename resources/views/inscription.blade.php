@@ -36,6 +36,19 @@
                         <small class="invalidate">{{ $message }}</small>
                     @enderror
 
+                    <span>
+                      <i class="fa fa-city"></i>
+                      <select name="ville_id" id="default_city" class="@error('ville_id') is-invalidate @enderror">
+                          @foreach ($villes as $id => $ville)
+                              <option value="{{ $id+1 }}">{{ $ville->name }}</option>
+                          @endforeach
+                      </select>                  
+                    </span>
+                    @error('ville_id')
+                        <small class="invalidate">{{ $message }}</small>
+                    @enderror
+
+
                     <span><i class="fa fa-lock"></i><input type="password" name="password" placeholder="mot de passe" class="@error('password') is-invalidate @enderror"></span>
                     @error('password')
                         <small class="invalidate">{{ $message }}</small>

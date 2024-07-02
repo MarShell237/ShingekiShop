@@ -114,8 +114,8 @@ form{
     padding: 0 8px;
     background-color: var(--couleur-input);
     color: grey;
-}
-
+  }
+  
 .container form span .fa,.container form span .fa-regular{
     color: white;
 }
@@ -123,20 +123,24 @@ form{
 .container form div{
     width: 100%;
     z-index: 3;
-}
-
-input{
+  }
+  
+  input,select{
     all: unset;
     border: none;
     padding: 12px 15px;
     width: 100%;
     text-align: left;
     color: white;
-}
-
+  }
+  
 input::placeholder{
     color: white;
-}
+  }
+  
+  select{
+    color: black;
+  }
 
 button.ghost{
     background-color: transparent;

@@ -21,8 +21,7 @@ use App\Http\Controllers\UserController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/inscription',function (){
-    return view('inscription');})->name('inscription');
+Route::get('/inscription',[AuthController::class,'login'])->name('inscription');
 
 Route::view('/notAuthorize','admin.notAuthorize')->name('notAuthorize');
 
@@ -32,8 +31,10 @@ Route::prefix('/admin')->name('admin.')->group(function (){
 });
 Route::get('/panier',[PanierController::class,'index'])->name('panier.index')->middleware('auth');
 Route::post('/panier/store/{product}',[PanierController::class,'store'])->name('panier.store')->middleware('auth');
+Route::post('/panier/storeShow/{product}',[PanierController::class,'storeShow'])->name('panier.storeShow')->middleware('auth');
 Route::delete('/help/destroy/{id}',[HelpController::class,'destroy'])->name('help.destroy')->middleware('auth');
 Route::get('/panier/destroy/{product}',[PanierController::class,'destroy'])->name('panier.destroy')->middleware('auth');
+Route::put('/panier/update/{panier}',[PanierController::class,'update'])->name('panier.update')->middleware('auth');
 Route::get('/panier/destroyAll',[PanierController::class,'destroyAll'])->name('panier.destroyAll')->middleware('auth');
 
 Route::get('/facture/{id}',[FactureController::class,'store'])->name('facture.store')->middleware('auth');

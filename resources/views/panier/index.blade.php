@@ -1,32 +1,14 @@
     {{-- @vite(['resources/css/panier.css']) --}}
-    @vite(['resources/css/partials/input.css'])
+    @vite(['resources/css/partials/input.css','resources/css/partials/select.css'])
 @extends('base')
 @section('content')
     <body style="margin-top: 100px">
       <h1 style="font-size: 90px;color:gold;margin-bottom:0;">Pannier</h1>
-      @foreach ($paniers as $panier )
-          <hr>
-          <div class="single-pannier" style="background-color: rgb(255, 255, 255,0.20); padding:25px; border-radius:10px;display:flex;align-items:center;justify-content:space-around;" >
-            <div style="display:flex;gap:10px;width:50%">
-                <img src="{{$panier->product->image}}" style="width:100%;" alt="">
-                <div>
-                    <p style="width: 100%;font-size:25px">{{$panier->product->name}}</p>
-                    <p>{{$panier->product->description}}</p>
-                </div>
-            </div>
-                <div>
-                    <label for="quantite" style="font-size:20px">quantity:</label>
-                    <br>
-                    @include('partials._input',['type'=>'number','name'=>'quantite','placeholder'=>'entrer le prix du produit','value'=>$panier->quantite])
-                    <h2>prix:  <span style="color: gold">{{$panier->product->getPrice()}} fcfa</span></h2>
-                <form action="{{route('help.destroy',$panier->id)}}" method="post">
-                    @csrf
-                    @method("DELETE")
-                    <button  style="background-color:crimson;padding:8px;border-radius:10px;color:white;font-size:20px;border-width:0">Supprimer du pannier</button>
-                </form>
-                </div>
-          </div>
-      @endforeach
+      @forelse ($paniers as $panier )
+        @include('partials._panier',['panier'=>$panier])
+      @empty
+        <p style="font-size: 70px;text-align:center;">Votre panier est vide</p>
+      @endforelse
 
       <hr>
       <h2 style="font-size: 50px">Sommaire</h2>

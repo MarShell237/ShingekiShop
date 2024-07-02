@@ -45,44 +45,40 @@
                 </div>
             </div>
         </div>
+        <form action="{{route('panier.storeShow',$product)}}" method="POST" style="margin:0;">
+          @csrf
         <div class="small-layouts">
-            <div class="layout-price">
-                <p class="price">{{$product->getPrice()}} fcfa</p>
-                <div class="quatites">
-                    <form action="">
-                      <label for="quantite"  class="label">Quantites:</label>
+                <div class="layout-price">
+                  <p class="price">{{$product->getPrice()}} fcfa</p>
+                  <div class="quatites">
+                        <label for="quantite"  class="label" style="font-size:20px;">Quantites:</label>
                         @include('partials._input',['type'=>'number','name'=>'quantite','placeholder'=>'entrer le nombre d\'articles que vous desirez','value'=>1])
-                    </form>
-                </div>
-              <div class="btn-action">
-                  <form action="{{route('panier.store',$product)}}" method="POST" style="margin:0;">
-                    @csrf
+                  </div>
+                  <div class="btn-action">
                     <button>
                       <span >Ajouter au panier</span>
                       <i class="fa fa-cart-shopping"></i>
                     </button>
-                  </form>
-                  <div>
-                    <label for="checkbox-show" ><i class="fa fa-heart fa-heart-show" id="fa-heart-show"></i></label>
-                    <input type="checkbox-show" name="" id="checkbox-show">
+                    <div>
+                      <label for="checkbox-show"><i class="fa fa-heart fa-heart-show" id="fa-heart-show"></i></label>
+                      <input type="checkbox-show" name="" id="checkbox-show">
+                    </div>
                   </div>
-                </div>
-            </div>
-            <div class="layout-information-livraison">
+              </div>
+              <div class="layout-information-livraison">
                 <h3>Informations de livraison</h3>
-                <span class="label">Numero de telephone:</span>
+                <span class="label" style="font-size:20px;">Numero de telephone:</span>
                 @auth
                   <p class="phone">{{Auth::user()->phone}}</p>
                 @endauth
                 @guest
                   <p class="phone">Vous devez etre connecter</p>
                 @endguest
-                <form action="">
-                  <label for="ville_id"  class="label">Adresse de livraison:</label>
-                    @include('partials._select',['name'=>'villes_id','value'=> '','categories'=>$villes])
-                </form>
+                  <label for="default_city"  class="label" style="font-size:20px;">Adresse de livraison:</label>
+                  @include('partials._select',['name'=>'default_city','value'=> Auth::user()->ville_id,'categories'=>$villes])
+              </div>
             </div>
-        </div>
+          </form>
     </section>
     <section>
         <h2>Produits similaires</h2>
