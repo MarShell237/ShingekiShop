@@ -29,17 +29,4 @@ class CreateUserRequest extends FormRequest
             'password'=>['required','min:4']
         ];
     }
-
-    public function messages(){
-        return[
-            "name.required" => "Veuillez entrer votre nom complet",
-            "name.min" => "Le nom complet es de minimun 5 caracteres",
-            "phone.required" => "Veuillez entrer votre numeros de telephone",
-            "phone.regex" => "le numeros ne peut contenir que des chiffres et le symbole +",
-            "email.required" => "Veuillez entrer votre Email",
-            "email.email" => "L'email doit contenir un @",
-            "password.required" => "Veuillez entrer votre mot de passe",
-            "password.min" => "Le mot de passe est minimun 4 caracteres",
-        ];
-    }
 }

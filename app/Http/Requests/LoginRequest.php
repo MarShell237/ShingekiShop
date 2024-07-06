@@ -26,13 +26,4 @@ class LoginRequest extends FormRequest
                 'password'=> ['required','min:4']
             ];
     }
-
-    public function messages(){
-        return[
-            "name.required" => "Veuillez entrer votre nom complet",
-            "name.min" => "Veuillez entrer votre nom complet de minimun 5 caracteres",
-            "password.required" => "Veuillez entrer votre mot de passe",
-            "password.min" => "Le mot de passe est minimun 4 caracteres",
-        ];
-    }
 }
