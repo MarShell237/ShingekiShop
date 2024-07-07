@@ -43,6 +43,7 @@ class ProductController extends Controller
      */
     public function store(ProductFormRequest $request)
     {
+        $request->validate(['image' => 'required']);
         $data = $request->validated();
         $image = $request->validated('image');
         $data['image'] = $image->store('product','public');
@@ -68,8 +69,12 @@ class ProductController extends Controller
     {
         $data = $request->validated();
         $image = $request->validated('image');
-        $data['image'] = $image->store('product','public');
-        Storage::disk('public')->delete($product->image);
+
+        if(isset($image)){
+          $data['image'] = $image->store('product','public');
+          Storage::disk('public')->delete($product->image);
+        }
+        
         $product->update($data);
         return to_route('admin.product.index')->with('success','le produit a ete mis a jour');
     }

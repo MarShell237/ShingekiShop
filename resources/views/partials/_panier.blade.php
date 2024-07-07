@@ -3,7 +3,7 @@
   <div style="display:flex;gap:10px;width:50%">
       <img src="{{$panier->product->image}}" style="width:100%;" alt="">
       <div>
-          <p style="width: 100%;font-size:25px">{{$panier->product->name}}</p>
+          <p style="width: 100%;font-size:30px;font-weight:bold">{{$panier->product->name}}</p>
           <p>{{$panier->product->description}}</p>
       </div>
   </div>
@@ -15,7 +15,7 @@
           @csrf
           @method('PUT')
           <label for="quantite" style="font-size:20px;text-decoration:underline;">Quantites:</label>
-          @include('partials._input',['type'=>'number','name'=>'quantite','placeholder'=>'entrer le prix du produit','value'=>$panier->quantite])
+          @include('partials._input',['type'=>'number','name'=>'quantite'.$panier->id,'placeholder'=>'entrer le prix du produit','value'=>$panier->quantite])
           <label for="ville_id"  class="label" style="font-size:20px;text-decoration:underline;">
             Adresse de livraison:
           </label>

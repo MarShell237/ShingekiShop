@@ -2,8 +2,7 @@
     @vite(['resources/css/partials/input.css','resources/css/partials/select.css'])
 @extends('base')
 @section('content')
-    <body style="margin-top: 100px">
-      <h1 style="font-size: 90px;color:gold;margin-bottom:0;">Pannier</h1>
+      <h1 style="font-size: 90px;color:gold;margin-bottom:0;margin-top: 100px">Pannier</h1>
       @forelse ($paniers as $panier )
         @include('partials._panier',['panier'=>$panier])
       @empty

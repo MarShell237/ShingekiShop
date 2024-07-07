@@ -23,7 +23,7 @@ class ProductFormRequest extends FormRequest
     {
         return [
             'name'=>['required','min:8'],
-            'image'=>['required','image'],
+            'image'=>['image'],
             'description'=>['required','min:20'],
             'price'=> ['required','integer','min:0'],
             'categories_id' => 'required|exists:categories,id',

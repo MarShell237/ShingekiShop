@@ -58,10 +58,10 @@ class PanierController extends Controller
 
     public function update(Request $request,Panier $panier){
       $data=$request->validate([
-        'quantite'=>'required|min:1|integer',
+        'quantite'.$panier->id=>'required|min:1|integer',
         'ville_id'=>'required',
       ]);
-      $panier->quantite=$data['quantite'];
+      $panier->quantite=$data['quantite'.$panier->id];
       $panier->ville_id=$data['ville_id'];
       $panier->save();
       return redirect()->route('panier.index');

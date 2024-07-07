@@ -20,8 +20,8 @@ return new class extends Migration
             $table->text('description');
             $table->integer('price');
             $table->string('image');
-            $table->integer('nb_vote');
-            $table->integer('note');
+            $table->integer('nb_vote')->default(0);
+            $table->integer('note')->default(0);
             $table->timestamps();
         });
         schema::enableForeignKeyConstraints();

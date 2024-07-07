@@ -14,14 +14,15 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(Ville::class)->constrained();
+            $table->string('image');
             $table->string('name');
             $table->string('phone');
             $table->string('email')->unique();
             $table->string('password');
+            // $table->string('nametitan');
+            $table->rememberToken();
             $table->timestamps();
-            $table->string('nametitan');
-            $table->string('image');
-            $table->foreignIdFor(Ville::class)->constrained();
         });
     }
 

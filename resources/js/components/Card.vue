@@ -59,7 +59,7 @@ import { onMounted, ref } from 'vue';
   function showProduct(){
     axios.get(`/client/product/${props.slug}/${props.valeur.id}`)
     .then(()=>{window.location.href=`/client/product/${props.slug}/${props.valeur.id}`})
-    .catch(()=>{window.location.href='/inscription'})
+    //.catch(()=>{window.location.href='/inscription'})
 
   }
 
