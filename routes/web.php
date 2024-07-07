@@ -3,7 +3,6 @@
 use App\Http\Controllers\FactureController;
 use App\Http\Controllers\HelpController;
 use App\Http\Controllers\PanierController;
-use App\Models\Categorie;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ProductController;
@@ -25,7 +24,7 @@ Route::get('/inscription',[AuthController::class,'login'])->name('inscription');
 
 Route::view('/notAuthorize','admin.notAuthorize')->name('notAuthorize');
 
-Route::prefix('/admin')->name('admin.')->group(function (){
+Route::prefix('/admin')->name('admin.')->middleware('auth')->group(function (){
     Route::resource('/product',ProductController::class)->except(['show']);
     Route::resource('/article',ArticleController::class)->except(['show']);
 });
