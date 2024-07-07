@@ -74,6 +74,10 @@
                     @error('password')
                         <small class="invalidate">{{ $message }}</small>
                     @enderror
+                    <div class="remember" >
+                      <input type="checkbox" name="remember_checkbox" id="remember_checkbox">
+                      <label for="remember_checkbox" style="color: white">souvenez vous de moi</label>
+                    </div>
                     <button>Se connecter</button>
                 </div>
                 <span class="fond-noir"></span>

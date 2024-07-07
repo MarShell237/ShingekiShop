@@ -15,8 +15,11 @@ class AuthController extends Controller
         return view('inscription',["villes" => Ville::all()]);
     }
     function doLogin(LoginRequest $request){
-        $credentials = $request->validated();
-        if(Auth::attempt($credentials)){
+        $name = $request->validated('name');
+        $password = $request->validated('password');
+        $remember = $request->validated('remember_checkbox');
+
+        if(Auth::attempt(['name'=>$name , 'password' => $password],$remember)){
             $user=$request->all();
             $id=User::where('name',$user['name'])->get('id');
             \Session::put('Users_id',$id[0]->id);

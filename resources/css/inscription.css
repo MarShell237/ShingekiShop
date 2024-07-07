@@ -125,7 +125,7 @@ form{
     z-index: 3;
   }
   
-  input,select{
+  input:not([type='checkbox']),select{
     all: unset;
     border: none;
     padding: 12px 15px;
@@ -285,7 +285,17 @@ small{
     border-radius: 10px;
 }
 
+.remember{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+}
 
+.remember input{
+  scale: 1.5;
+  margin-left: 3px;
+}
 
 
 

@@ -23,7 +23,8 @@ class LoginRequest extends FormRequest
     {
         return [
                 'name'=>['required','min:5'],
-                'password'=> ['required','min:4']
+                'password'=> ['required','min:4'],
+                "remember_checkbox" => ['nullable']
             ];
     }
 }
