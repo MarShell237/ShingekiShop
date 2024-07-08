@@ -15,7 +15,7 @@
         </div>
     @endif
     <div class="container" id="container">
-        <div class="form-container sign-up-container">
+      <div class="form-container sign-up-container">
             <form action="{{ route('create_user') }}" method="POST"> 
                 @csrf
                 <div>
