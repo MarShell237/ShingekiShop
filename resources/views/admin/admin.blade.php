@@ -35,6 +35,16 @@
             <div class="options">
                 <a href="{{ route('admin.article.index') }}"><i class="fa fa-book"></i><span>blog</span></a>
             </div>
+            <div class="options"  style="display: inline">
+              <form action="{{ route('adminLogin') }}" method="POST" style="display: inline">
+                  @csrf
+                  @method("DELETE")
+                  <button style="all:unset;display: inline-flex;flex-direction:column;align-items:center;">
+                      <i class="fa fa-right-from-bracket"></i>
+                      <span>deconnection</span>
+                  </button>
+              </form>
+          </div>   
             <div class="admin-infos">
                 <div>
                     <span>{{Auth::user()->name}}</span>

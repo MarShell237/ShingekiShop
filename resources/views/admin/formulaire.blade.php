@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="container">
-        <form action="{{ route('login') }}" method="POST">
+        <form action="{{ route('adminLogin') }}" method="POST">
             @csrf 
             <h2>veuillez vous identifier</h2>
             <div class="inputBox">

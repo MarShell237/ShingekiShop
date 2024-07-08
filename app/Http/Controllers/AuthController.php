@@ -19,7 +19,7 @@ class AuthController extends Controller
         $password = $request->validated('password');
         $remember = $request->validated('remember_checkbox');
 
-        if(Auth::attempt(['name'=>$name , 'password' => $password],$remember)){
+        if(Auth::guard('web')->attempt(['name'=>$name , 'password' => $password],$remember)){
             $user=$request->all();
             $id=User::where('name',$user['name'])->get('id');
             \Session::put('Users_id',$id[0]->id);
@@ -27,10 +27,12 @@ class AuthController extends Controller
             return redirect()->intended(route('myhome.product'));
         }
 
-        return redirect()->route('notAuthorize');
+        return back()->withErrors([
+          'name' => 'Les informations de connections sont erronees',
+      ])->onlyInput('email');
     }
     function logout(){
-        Auth::logout();
+        Auth::guard('web')->logout();
         return redirect()->route('myhome.product')->with('success','Vous etes maintenant deconnecter');
     }
 }

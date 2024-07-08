@@ -13,7 +13,7 @@
                 <h2>Aucun {{$filter_title}} Pour L'instant</h2>
             @endforelse
         </section>
-        {{$products->links()}}
+        {{$products->links('pagination')}}
     </main>
 
     <footer>

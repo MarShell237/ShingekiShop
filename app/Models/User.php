@@ -27,6 +27,9 @@ class User extends Authenticatable
     function panier(){
         return $this->belongsToMany(panier::class);
     }
+    function ville(){
+        return $this->belongsTo(Ville::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

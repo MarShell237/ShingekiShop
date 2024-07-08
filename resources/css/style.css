@@ -64,6 +64,8 @@ nav{
   border-radius: 10px;
   height: 80%;
   transition: 200ms;
+  padding: 0 5px;
+  cursor: pointer;
 }
 
 .nav-bar form{

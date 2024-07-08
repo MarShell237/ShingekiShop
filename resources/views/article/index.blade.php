@@ -13,7 +13,7 @@
                 <h2>Aucun Article Pour L'instant</h2>
             @endforelse
         </section>
-        {{$articles->links()}}
+        {{$articles->links('pagination')}}
     </main>
 
     <footer>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\FactureController;
 use App\Http\Controllers\HelpController;
 use App\Http\Controllers\PanierController;
@@ -24,31 +25,37 @@ Route::get('/inscription',[AuthController::class,'login'])->name('inscription');
 
 Route::view('/notAuthorize','admin.notAuthorize')->name('notAuthorize');
 
-Route::prefix('/admin')->name('admin.')->middleware('auth')->group(function (){
+Route::prefix('/admin')->name('admin.')->middleware('auth:admin')->group(function (){
     Route::resource('/product',ProductController::class)->except(['show']);
     Route::resource('/article',ArticleController::class)->except(['show']);
 });
-Route::get('/panier',[PanierController::class,'index'])->name('panier.index')->middleware('auth');
-Route::post('/panier/store/{product}',[PanierController::class,'store'])->name('panier.store')->middleware('auth');
-Route::post('/panier/storeShow/{product}',[PanierController::class,'storeShow'])->name('panier.storeShow')->middleware('auth');
-Route::delete('/help/destroy/{id}',[HelpController::class,'destroy'])->name('help.destroy')->middleware('auth');
-Route::get('/panier/destroy/{product}',[PanierController::class,'destroy'])->name('panier.destroy')->middleware('auth');
-Route::put('/panier/update/{panier}',[PanierController::class,'update'])->name('panier.update')->middleware('auth');
-Route::get('/panier/destroyAll',[PanierController::class,'destroyAll'])->name('panier.destroyAll')->middleware('auth');
+Route::get('/adminLogin',[AdminController::class,'login'])->name('adminLogin')->middleware('guest:admin');
+Route::post('/adminLogin',[AdminController::class,'doLogin'])->name('adminLogin')->middleware('guest:admin');
+Route::delete('/adminLogin',[AdminController::class,'logout'])->name('adminLogin')->middleware('auth:admin');
 
-Route::get('/facture/{id}',[FactureController::class,'store'])->name('facture.store')->middleware('auth');
-Route::put('/buy',[HelpController::class,'buy'])->name('buy')->middleware('auth');
-Route::get('/buy/om',[HelpController::class,'om'])->name('buy.om')->middleware('auth');
-Route::get('/buy/momo',[HelpController::class,'momo'])->name('buy.momo')->middleware('auth');
+Route::prefix('/panier')->name('panier.')->middleware('auth:web')->group(function(){
+  Route::get('/',[PanierController::class,'index'])->name('index');
+  Route::post('/store/{product}',[PanierController::class,'store'])->name('store');
+  Route::post('/storeShow/{product}',[PanierController::class,'storeShow'])->name('storeShow');
+  Route::delete('/destroy/{panier}',[PanierController::class,'destroy'])->name('destroy');
+  Route::get('/destroy/{product}',[PanierController::class,'destroy'])->name('destroy');
+  Route::put('/update/{panier}',[PanierController::class,'update'])->name('update');
+  Route::get('/destroyAll',[PanierController::class,'destroyAll'])->name('destroyAll');
+  Route::put('/buy',[HelpController::class,'buy'])->name('buy');
+  Route::get('/buy/om',[HelpController::class,'om'])->name('buy.om');
+  Route::get('/buy/momo',[HelpController::class,'momo'])->name('buy.momo');
+});
+
+Route::get('/facture/{id}',[FactureController::class,'store'])->name('facture.store')->middleware('auth:web');
 
 
-Route::get('/login',[AuthController::class,'login'])->name('login');
-Route::post('/login',[AuthController::class,'doLogin']);
-Route::delete('/login',[AuthController::class,'logout'])->name('login');
+Route::get('/login',[AuthController::class,'login'])->name('login')->middleware('guest:web');
+Route::post('/login',[AuthController::class,'doLogin'])->middleware('guest:web');
+Route::delete('/login',[AuthController::class,'logout'])->name('login')->middleware('auth:web');
 
 Route::get('/', [HomeProduitController::class,'home'])->name('myhome.product');
 
-Route::prefix('/client')->name('client.')->group(function(){
+Route::prefix('/client')->name('client.')->middleware('auth:web')->group(function(){
     Route::get('/product', [HomeProduitController::class,'index'])->name('product.index');
     Route::get('/product/{id}', [HomeProduitController::class,'filter'])->name('product.filter');
     Route::get('/product/{slug}/{product}', [HomeProduitController::class,'show'])->name('product.show')

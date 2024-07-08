@@ -36,7 +36,7 @@ class PanierController extends Controller
       $newPanier->product_id = $product->id;
       $newPanier->ville_id = Auth::user()->ville_id;
       $newPanier->save();
-      return redirect()->route('panier.index');
+      // return redirect()->route('panier.index');
 
     }
 

@@ -18,6 +18,6 @@
 
     </section>
 
-    {{ $articles->links() }}
+    {{ $articles->links('pagination') }}
 
 @endsection

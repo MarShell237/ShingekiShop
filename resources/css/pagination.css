@@ -1,0 +1,125 @@
+.nav-pagination{
+  display: flex;
+  list-style: none;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.nav-pagination a{
+  color: white;
+  text-decoration: none;
+  
+}
+
+.simple-pagination{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 80px;
+  padding: 10px;
+}
+
+.simple-pagination span,.simple-pagination a{
+  display: block;
+  padding: 10px;
+  margin: 10px;
+  font-size: 30px;
+  background-color: rgb(255, 255, 255,0.2);
+  border: 2px solid grey;
+  border-radius: 10px;
+}
+
+.simple-pagination span{
+  color: grey;
+}
+.simple-pagination .next-pagination ,
+.simple-pagination .prev-pagination{
+  border: 1px outset grey;
+}
+
+.simple-pagination .next-pagination:active ,
+.simple-pagination .prev-pagination:active{
+  border: 1px solid black;
+}
+
+.simple-pagination .next-pagination:hover ,
+.simple-pagination .prev-pagination:hover{
+  opacity: 0.8;
+}
+
+.simple-pagination .next-pagination{
+  background-color: #142C4C;
+}
+
+.simple-pagination .prev-pagination{
+    background-color: rgb(255, 255, 255,0.2);
+  }
+  
+  .information-pagination{
+    font-size: 30px;
+    color: grey;
+  }
+  
+  .information-pagination span{
+    color: white;
+}
+
+.big-pagination{
+  display: flex;
+  font-size: 32px;
+}
+
+.big-pagination a,.big-pagination > span{
+  background-color: rgb(255, 255, 255,0.2);
+  border: 1px outset grey;
+  color: grey;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 10px;
+}
+
+.big-pagination a:active,.big-pagination > span:active{
+  border: 1px solid black;
+}
+
+.big-pagination a:hover,.big-pagination > span:hover{
+  opacity: 0.8;
+}
+
+.big-pagination .actual-pagination{
+  display: block;
+  background-color: rgb(255, 255, 255,0.4);
+  color: white;
+}
+
+.big-pagination svg{
+  width: 40px;
+  height: 40px;
+}
+
+.big-pagination span:has(svg):first-of-type{
+  border-radius: 10px 0 0 10px;
+}
+
+.big-pagination a:has(svg):first-of-type{
+  border-radius: 10px 0 0 10px;
+  color: white;
+}
+
+.big-pagination span:has(svg):last-of-type{
+  border-radius: 0 10px 10px 0;
+}
+
+.big-pagination a:has(svg):last-of-type{
+  border-radius: 0 10px 10px 0;
+  color: white;
+}
+
+#unclickable{
+  border-width: 0;
+}
+
+#unclickable{
+  opacity: initial;
+}

@@ -23,11 +23,20 @@
   <nav>
     <div class="nav-bar">
       <a href="/"><img src="{{Vite::asset('resources/images/logo-removebg-preview (5).png')}}" alt="" class="logo"></a>
+    @auth
       <div class="localisation">
         <i class="fa fa-location-dot"></i>
-        <span>votre adresse de livraison</span>
-        <span>cameroun,dschang</span>
+        <span>Adresse de livraison:</span>
+        <span>{{ Auth::user()->ville->name }}</span>
       </div>
+    @endauth
+    @guest
+      <div class="localisation">
+        <i class="fa fa-location-dot"></i>
+        <span>Adresse de livraison</span>
+        <span>s'afficheras ici</span>
+      </div>
+    @endguest
       <form action="" method="GET">
           <div class="search-bar">
               <input type="search" placeholder="Rechercher..." name="searchValue">

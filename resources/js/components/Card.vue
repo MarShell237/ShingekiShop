@@ -59,13 +59,13 @@ import { onMounted, ref } from 'vue';
   function showProduct(){
     axios.get(`/client/product/${props.slug}/${props.valeur.id}`)
     .then(()=>{window.location.href=`/client/product/${props.slug}/${props.valeur.id}`})
-    //.catch(()=>{window.location.href='/inscription'})
+    .catch(()=>{window.location.href='/inscription'})
 
   }
 
   function ajouterAuPanier(){
     axios.post(`/panier/store/${props.valeur.id}`).
-    then(()=>{window.location.href=`/panier`}).
+    // then(()=>{window.location.href=`/panier`}).
     catch(()=>{window.location.href='/inscription'})
   }
 </script>
@@ -180,6 +180,7 @@ import { onMounted, ref } from 'vue';
     border-radius: 5px;
     right: 10px;
     background-color: #142C4C;
+    border: 1px outset grey;
     transition: 200ms;
     cursor: pointer;
   }
@@ -189,7 +190,7 @@ import { onMounted, ref } from 'vue';
   }
 
   .card .card-bottom button:active{
-    scale: 1.05;
+    border: .2px solid grey;
   }
 
   .i-am-pulse{

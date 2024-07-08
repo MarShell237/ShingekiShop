@@ -24,7 +24,8 @@
             mettre a jour le panier
           </button>
         </form>
-        <form action="{{route('help.destroy',$panier->id)}}" method="post">
+        <form action="{{route('panier.destroy',$panier)}}" method="post">
+          {{-- @dd($panier) --}}
             @csrf
             @method("DELETE")
             <button  style="background-color:crimson;padding:12px;border-radius:10px;color:white;font-size:20px;border-width:0;cursor: pointer;">
