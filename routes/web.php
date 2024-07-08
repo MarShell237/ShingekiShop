@@ -70,7 +70,6 @@ Route::prefix('/client')->name('client.')->middleware('auth:web')->group(functio
     Route::get('/article/{article}', [HomeArticleController::class,'show'])->name('article.show');
 
 
-    Route::post('/create_user',[UserController::class,'store'])->name('create_user');
-    Route::get('/create_user',[UserController::class,'create'])->name('create_user');
-});
+  });
+  Route::post('/create_user',[UserController::class,'store'])->name('create_user')->middleware(['guest']);
 

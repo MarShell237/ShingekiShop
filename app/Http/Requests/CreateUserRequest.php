@@ -25,7 +25,7 @@ class CreateUserRequest extends FormRequest
             'name'=>['required','min:5'],
             'phone'=>['required','regex:/^[0-9+]+$/'],
             'email'=>['required','email'],
-            'default_city' => ['required','exists:ville,id'],
+            'ville_id' => ['required','exists:villes,id'],
             'password'=>['required','min:4']
         ];
     }

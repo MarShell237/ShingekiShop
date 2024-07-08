@@ -16,9 +16,8 @@
     @endif
     <div class="container" id="container">
         <div class="form-container sign-up-container">
-            <form action="{{ route('client.create_user') }}" method="POST"> 
+            <form action="{{ route('create_user') }}" method="POST"> 
                 @csrf
-                @method("POST")
                 <div>
                     <h1>creer un compte</h1>
                     <span><i class="fa fa-user"></i><input type="text" name="name" placeholder="nom complet" class="@error('name') is-invalidate @enderror"></span>
@@ -38,7 +37,7 @@
 
                     <span>
                       <i class="fa fa-city"></i>
-                      <select name="ville_id" id="default_city" class="@error('ville_id') is-invalidate @enderror">
+                      <select name="ville_id" id="ville_id" class="@error('ville_id') is-invalidate @enderror">
                           @foreach ($villes as $id => $ville)
                               <option value="{{ $id+1 }}">{{ $ville->name }}</option>
                           @endforeach
