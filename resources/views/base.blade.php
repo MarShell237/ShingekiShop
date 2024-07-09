@@ -33,7 +33,7 @@
     @guest
       <div class="localisation">
         <i class="fa fa-location-dot"></i>
-        <span>Adresse de livraison</span>
+        <span>L'adresse de livraison</span>
         <span>s'afficheras ici</span>
       </div>
     @endguest

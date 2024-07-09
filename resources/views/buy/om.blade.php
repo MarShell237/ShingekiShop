@@ -12,7 +12,7 @@
         h2,
         h4,
         h3 {
-            color: rgb(199, 149, 84);
+            /* color: rgb(199, 149, 84); */
         }
         
         form {
@@ -24,25 +24,25 @@
     </style>
 </head>
 
-<body style="background-color:  rgb(12, 14, 43);">
+<body style="background-color: ;">
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post">
-    <?php
-extract($_POST);
-if(isset($submite)){
-$_SESSION['montent']=$montant;
-$con=mysqli_connect('localhost','root','','mysql');
-if(!$con){
-    die("error".mysqli_connect_error());
-    
-}
-   $nom=$_SESSION['nom'];
-  // $montent=mysqli_query($con,"SELECT solde FROM client WHERE username=' $nom'");
+      <?php
+        extract($_POST);
+        if(isset($submite)){
+        $_SESSION['montent']=$montant;
+        $con=mysqli_connect('localhost','root','','mysql');
+        if(!$con){
+            die("error".mysqli_connect_error());
+            
+        }
+          $nom=$_SESSION['nom'];
+          // $montent=mysqli_query($con,"SELECT solde FROM client WHERE username=' $nom'");
 
-    mysqli_query($con,"UPDATE client SET solde='$montant' WHERE username='$nom'");
+            mysqli_query($con,"UPDATE client SET solde='$montant' WHERE username='$nom'");
 
-//session_destroy();
-}
-?>
+        //session_destroy();
+        }
+      ?>
 
         <div>
             <h1>VEUILLEZ LIRE ET SUIVRE ATTENTIVEMENT LES ETAPES SUIVANTES</h1>

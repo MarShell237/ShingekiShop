@@ -66,7 +66,7 @@ import { onMounted, ref } from 'vue';
   function ajouterAuPanier(){
     axios.post(`/panier/store/${props.valeur.id}`)
     // .then(()=>{window.location.href=`/panier`}).
-    // .catch(()=>{window.location.href='/inscription'})
+    .catch(()=>{window.location.href='/inscription'})
   }
 </script>
 

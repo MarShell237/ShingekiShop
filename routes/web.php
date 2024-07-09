@@ -44,12 +44,10 @@ Route::prefix('/panier')->name('panier.')->middleware('auth:web')->group(functio
 });
 
 Route::prefix('/facture')->name('facture.')->middleware('auth:web')->group(function(){
-  Route::put('/buy',[HelpController::class,'buy'])->name('buy');
-  Route::get('/buy/om',[HelpController::class,'om'])->name('buy.om');
-  Route::get('/buy/momo',[HelpController::class,'momo'])->name('buy.momo');
+  Route::get('/sorry',[FactureController::class,'sorry'])->name('sorry');
+  Route::get('/',[FactureController::class,'create'])->name('store')->middleware('auth:web');
 });
 
-Route::get('/facture',[FactureController::class,'create'])->name('facture.store')->middleware('auth:web');
 
 
 Route::get('/login',[AuthController::class,'login'])->name('login')->middleware('guest:web');
@@ -61,18 +59,16 @@ Route::get('/', [HomeProduitController::class,'home'])->name('myhome.product');
 Route::prefix('/client')->name('client.')->middleware('auth:web')->group(function(){
     Route::get('/product', [HomeProduitController::class,'index'])->name('product.index');
     Route::get('/product/{id}', [HomeProduitController::class,'filter'])->name('product.filter');
-    Route::get('/product/{slug}/{product}', [HomeProduitController::class,'show'])->name('product.show')
-    ->where([
-        "slug"=>'[0-9a-z\-]+',
-        "product"=>'[0-9]+',
-    ]);
-
+    
     
     Route::get('/article', [HomeArticleController::class,'index'])->name('article.index');
     // Route::get('/article/{id}', [HomeArticleController::class,'filter'])->name('article.filter');
-    Route::get('/article/{article}', [HomeArticleController::class,'show'])->name('article.show');
-
-
   });
+  Route::get('/client/article/{article}', [HomeArticleController::class,'show'])->name('client.article.show');
+  Route::get('/client/product/{slug}/{product}', [HomeProduitController::class,'show'])->name('client.product.show')
+  ->where([
+      "slug"=>'[0-9a-z\-]+',
+      "product"=>'[0-9]+',
+  ]);
   Route::post('/create_user',[UserController::class,'store'])->name('create_user')->middleware(['guest']);
 

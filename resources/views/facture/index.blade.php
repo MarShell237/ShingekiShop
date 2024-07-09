@@ -41,6 +41,15 @@
             padding: 10px;
             border: 1px solid #ddd;
         }
+
+        button{
+          border: 1px outset black !important;
+          cursor: pointer;
+        }
+
+        button:active{
+          border: 1px solid black !important;
+        }
     </style>
 </head>
 
@@ -106,7 +115,7 @@
                   foreach ($factures as $key => $facture) {
                     if ($facture->panier->ville_id == $ville->id) {
                       $quantiteDes += $facture->panier->quantite;
-                      $prixDes += $facture->panier->product->price;
+                      $prixDes += $facture->panier->product->price * $facture->panier->quantite;
                     }
                   }
                 @endphp
@@ -131,20 +140,21 @@
               </tr>
               <tr>
                 <td colspan="3" style="padding:30px;font-size:40px">Prix Total:</td>
-                <td style="padding:40px;color: gold;font-size:60px;text-align:right;font-weight:bold">{{number_format($prixTotal,0,' ','.')}} fcfa</td>
+                <td style="padding:0;color: gold;font-size:60px;text-align:right;font-weight:bold">{{number_format($prixTotal,0,' ','.')}} fcfa</td>
               </tr>
               <tr>
-    <td colspan="5" style="padding: 10px">
+    <td colspan="5" style="padding: 10px;text-align:right;">
         <h2 style="margin-right: 20px">Moyen de paiement</h2>
-        <form action="{{route('facture.buy')}}" method="POST">
-        @csrf
-        @method('PUT')
+        <form action="{{route('facture.sorry')}}" method="GET">
+            @csrf
             <select name="moyen_paiement" style="width:190px; padding:10px;border-radius:10px;font-size:20px;background-color:#1F1F1F;color:white">
                 <option value="om">orange money</option>
                 <option value="momo">mobile money</option>
             </select>
 
-            <button type="submit" style="background-color:#32A2E1;padding:10px;font-size:20px;color:white;border-width:0;border-radius:10px;margin:0 20px">Valider</button>
+            <button type="submit" style="background-color:#32A2E1;padding:10px;font-size:20px;color:white;border-width:0;border-radius:10px;margin:0 20px;width:200px">
+              Valider
+            </button>
         </form>
     </td>
 </tr>

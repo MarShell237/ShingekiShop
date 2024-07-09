@@ -20,7 +20,7 @@
             Adresse de livraison:
           </label>
           @include('partials._select',['name'=>'ville_id','value'=> $panier->ville_id,'categories'=>$villes])
-          <button  style="background-color:rgb(20, 147, 220);padding:8px;border-radius:10px;color:white;font-size:20px;border-width:0;cursor: pointer;">
+          <button  style="background-color:rgb(20, 147, 220);padding:8px;border-radius:10px;color:white;font-size:20px;border-width:0;cursor: pointer;  border: 1px outset black;">
             mettre a jour le panier
           </button>
         </form>
@@ -28,9 +28,9 @@
           {{-- @dd($panier) --}}
             @csrf
             @method("DELETE")
-            <button  style="background-color:crimson;padding:12px;border-radius:10px;color:white;font-size:20px;border-width:0;cursor: pointer;">
+            <button  style="background-color:crimson;padding:12px;border-radius:10px;color:white;font-size:20px;border-width:0;cursor: pointer;  border: 1px outset black;">
               Supprimer du pannier
             </button>
         </form>
       </div>
-</div>
+</div> 
