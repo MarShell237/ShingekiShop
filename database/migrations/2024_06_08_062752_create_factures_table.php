@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('factures', function (Blueprint $table) {
             $table->id();
-            $table->float('prix_vente');
-            $table->string('nom_acheteur');
-            $table->string('name_product');
-            $table->foreignId('Panier_id');
-            $table->integer('quantite');
+            // $table->float('prix_vente');
+            // $table->string('nom_acheteur');
+            // $table->string('name_product');
+            $table->foreignId('panier_id');
+            $table->foreignId('user_id');
+            // $table->integer('quantite');
             $table->timestamps();
         });
     }

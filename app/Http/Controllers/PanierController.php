@@ -17,7 +17,7 @@ class PanierController extends Controller
      */
     public function index()
     {
-      $paniers=Panier::where('user_id',Auth::user()->id)->get();
+      $paniers=Panier::where('user_id',Auth::user()->id)->orderBy('ville_id')->get();
       $prixTotal = 0;
       foreach ($paniers as $key => $panier) {
         $prixTotal += $panier->product->price * $panier->quantite;
@@ -36,7 +36,7 @@ class PanierController extends Controller
       $monPanier = Panier::where('product_id',$product->id)
                           ->where('user_id',$user->id)
                           ->get();
-      // dd(!$monPanier->isEmpty());
+
       if($monPanier->isEmpty()){
         $newPanier = new Panier();
         $newPanier->user_id = $user->id;

@@ -20,9 +20,6 @@ class AuthController extends Controller
         $remember = $request->validated('remember_checkbox');
 
         if(Auth::guard('web')->attempt(['name'=>$name , 'password' => $password],$remember)){
-            $user=$request->all();
-            $id=User::where('name',$user['name'])->get('id');
-            \Session::put('Users_id',$id[0]->id);
             $request->session()->regenerate();
             return redirect()->intended(route('myhome.product'));
         }

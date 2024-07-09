@@ -41,12 +41,15 @@ Route::prefix('/panier')->name('panier.')->middleware('auth:web')->group(functio
   Route::get('/destroy/{product}',[PanierController::class,'destroy'])->name('destroy');
   Route::put('/update/{panier}',[PanierController::class,'update'])->name('update');
   Route::get('/destroyAll',[PanierController::class,'destroyAll'])->name('destroyAll');
+});
+
+Route::prefix('/facture')->name('facture.')->middleware('auth:web')->group(function(){
   Route::put('/buy',[HelpController::class,'buy'])->name('buy');
   Route::get('/buy/om',[HelpController::class,'om'])->name('buy.om');
   Route::get('/buy/momo',[HelpController::class,'momo'])->name('buy.momo');
 });
 
-Route::get('/facture/{id}',[FactureController::class,'store'])->name('facture.store')->middleware('auth:web');
+Route::get('/facture',[FactureController::class,'create'])->name('facture.store')->middleware('auth:web');
 
 
 Route::get('/login',[AuthController::class,'login'])->name('login')->middleware('guest:web');
