@@ -31,29 +31,51 @@ class PanierController extends Controller
      */
     public function store(Request $request,Product $product)
     {
-      $newPanier = new Panier();
-      $newPanier->user_id = Auth::user()->id;
-      $newPanier->product_id = $product->id;
-      $newPanier->ville_id = Auth::user()->ville_id;
-      $newPanier->save();
-      // return redirect()->route('panier.index');
 
+      $user = Auth::user();
+      $monPanier = Panier::where('product_id',$product->id)
+                          ->where('user_id',$user->id)
+                          ->get();
+      // dd(!$monPanier->isEmpty());
+      if($monPanier->isEmpty()){
+        $newPanier = new Panier();
+        $newPanier->user_id = $user->id;
+        $newPanier->product_id = $product->id;
+        $newPanier->ville_id = $user->ville->id;
+        $newPanier->save();
+      }else{
+        $monPanier[0]->quantite += 1;
+        $monPanier[0]->save();
     }
+
+}
 
     public function storeShow(Request $request,Product $product)
     {
       $data=$request->validate([
         'quantite'=>'required|min:1|integer',
-        'default_city'=>'required',
+        'ville_id'=>'required|exists:villes,id',
       ]);
-      $newPanier = new Panier();
-      $newPanier->user_id = Auth::user()->id;
-      $newPanier->product_id = $product->id;
-      $newPanier->quantite = $data['quantite'];
-      $newPanier->ville_id = $data['default_city'];
-      $newPanier->save();
-      return redirect()->route('panier.index');
 
+      $user = Auth::user();
+      $monPanier = Panier::where('product_id',$product->id)
+                          ->where('user_id',$user->id)
+                          ->get();
+
+      if($monPanier->isEmpty()){
+        $newPanier = new Panier();
+        $newPanier->user_id = Auth::user()->id;
+        $newPanier->product_id = $product->id;
+        $newPanier->quantite = $data['quantite'];
+        $newPanier->ville_id = $data['ville_id'];
+        $newPanier->save();
+      }else{
+        $data['quantite'] > 1 ? $monPanier[0]->quantite = $data['quantite'] : $monPanier[0]->quantite +=1;
+        $monPanier[0]->ville_id = $data['ville_id'];
+        $monPanier[0]->save();
+    }
+    return redirect()->route('panier.index');
+      
     }
 
     public function update(Request $request,Panier $panier){

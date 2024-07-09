@@ -74,8 +74,8 @@
                 @guest
                   <p class="phone">Vous devez etre connecter</p>
                 @endguest
-                  <label for="default_city"  class="label" style="font-size:20px;">Adresse de livraison:</label>
-                  @include('partials._select',['name'=>'default_city','value'=> Auth::user()->ville_id ?? null,'categories'=>$villes])
+                  <label for="ville_id"  class="label" style="font-size:20px;">Adresse de livraison:</label>
+                  @include('partials._select',['name'=>'ville_id','value'=> Auth::user()->ville_id ?? null,'categories'=>$villes])
               </div>
             </div>
           </form>

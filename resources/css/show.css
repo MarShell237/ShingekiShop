@@ -65,10 +65,16 @@ section:first-of-type{
     border-radius: 5px;
     right: 10px;
     background-color: #142C4C;
+    border: 1px outset grey;
     transition: 200ms;
     cursor: pointer;
     width: 170px;
 }
+
+.layout-price button:active{
+  border: .2px solid grey;
+}
+
 .layout-price button a{
     text-decoration: none;
     color: white;

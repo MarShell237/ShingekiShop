@@ -65,7 +65,7 @@ nav{
   height: 80%;
   transition: 200ms;
   padding: 0 5px;
-  cursor: pointer;
+  cursor: context-menu;
 }
 
 .nav-bar form{

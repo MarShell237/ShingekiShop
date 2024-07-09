@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SearchProductRequest;
-use App\Models\User;
-use Illuminate\Http\Request;
 use App\Models\Categorie;
 use App\Models\Product;
 use App\Models\Ville;
@@ -15,12 +13,36 @@ class HomeProduitController extends Controller
 
     public function home(){
         return view('product.home',[
-            'bestMangas'=>Product::where('categories_id',1)->orderByDesc('note')->orderByDesc('nb_vote')->limit(4)->get(),
-            'bestFigurines'=>Product::where('categories_id',2)->orderByDesc('note')->orderByDesc('nb_vote')->limit(4)->get(),
-            'bestHabits'=>Product::where('categories_id',3)->orderByDesc('note')->orderByDesc('nb_vote')->limit(4)->get(),
-            'bestAccesoires'=>Product::where('categories_id',4)->orderByDesc('note')->orderByDesc('nb_vote')->limit(4)->get(),
-            'bestSons'=>Product::where('categories_id',5)->orderByDesc('note')->orderByDesc('nb_vote')->limit(4)->get(),
-            'bestGame'=>Product::where('categories_id',6)->orderByDesc('note')->orderByDesc('nb_vote')->limit(4)->get(),
+            'bestMangas'=>Product::where('categories_id',1)
+                                  ->orderByDesc('note')
+                                  ->orderByDesc('nb_vote')
+                                  ->limit(4)
+                                  ->get(),
+            'bestFigurines'=>Product::where('categories_id',2)
+                                    ->orderByDesc('note')
+                                    ->orderByDesc('nb_vote')
+                                    ->limit(4)
+                                    ->get(),
+            'bestHabits'=>Product::where('categories_id',3)
+                                  ->orderByDesc('note')
+                                  ->orderByDesc('nb_vote')
+                                  ->limit(4)
+                                  ->get(),
+            'bestAccesoires'=>Product::where('categories_id',4)
+                                      ->orderByDesc('note')
+                                      ->orderByDesc('nb_vote')
+                                      ->limit(4)
+                                      ->get(),
+            'bestSons'=>Product::where('categories_id',5)
+                                ->orderByDesc('note')
+                                ->orderByDesc('nb_vote')
+                                ->limit(4)
+                                ->get(),
+            'bestGame'=>Product::where('categories_id',6)
+                              ->orderByDesc('note')
+                              ->orderByDesc('nb_vote')
+                              ->limit(4)
+                              ->get(),
             'categories'=>Categorie::all()
         ]);
     }
@@ -71,7 +93,9 @@ class HomeProduitController extends Controller
             'product'=>$product,
             'categories'=>Categorie::all(),
             'villes'=>Ville::all(),
-            'products'=>Product::where('categories_id',$product->categories_id)->limit(4)->get(),
+            'products'=>Product::where('categories_id',$product->categories_id)
+                                ->get()
+                                ->random(4),
             'filter_title'=>Categorie::findOrFail($product->categories_id)->name,
         ]);
     } 
