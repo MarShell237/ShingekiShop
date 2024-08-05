@@ -30,9 +30,9 @@ Route::prefix('/admin')->name('admin.')->middleware('auth:admin')->group(functio
     // Route::delete('/product/destroy/{product}',[ProductController::class,'destroy']);
     Route::resource('/article',ArticleController::class)->except(['show']);
 });
-Route::get('/adminLogin',[AdminController::class,'login'])->name('adminLogin')->middleware('guest:admin');
-Route::post('/adminLogin',[AdminController::class,'doLogin'])->name('adminLogin')->middleware('guest:admin');
-Route::delete('/adminLogin',[AdminController::class,'logout'])->name('adminLogin')->middleware('auth:admin');
+Route::get('/adminLogin',[AdminController::class,'login'])->name('adminLogin');
+Route::post('/adminLogin',[AdminController::class,'doLogin'])->name('adminLogin');
+Route::delete('/adminLogin',[AdminController::class,'logout'])->name('adminLogin');
 
 Route::prefix('/panier')->name('panier.')->middleware('auth:web')->group(function(){
   Route::get('/',[PanierController::class,'index'])->name('index');
@@ -63,9 +63,9 @@ Route::prefix('/client')->name('client.')->middleware('auth:web')->group(functio
     Route::get('/product/{id}', [HomeProduitController::class,'filter'])->name('product.filter');
     
     
-    Route::get('/article', [HomeArticleController::class,'index'])->name('article.index');
     // Route::get('/article/{id}', [HomeArticleController::class,'filter'])->name('article.filter');
   });
+  Route::get('/client/article', [HomeArticleController::class,'index'])->name('client.article.index');
   Route::get('/client/article/{article}', [HomeArticleController::class,'show'])->name('client.article.show');
   Route::get('/client/product/{slug}/{product}', [HomeProduitController::class,'show'])->name('client.product.show')
   ->where([

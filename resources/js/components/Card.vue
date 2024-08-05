@@ -35,6 +35,7 @@
   import { onMounted, ref } from 'vue';
 import helpers from '../composables';
 import { usePanierStore } from '../store/store';
+import { useToast } from 'vue-toastification';
 
   const { formatteNombre } = helpers();
   const props = defineProps(['product','slug'])
@@ -42,6 +43,8 @@ import { usePanierStore } from '../store/store';
   const myHeart = ref(false);
   let heartInput = ref(null);
   const panierStore = usePanierStore();
+  const toast = useToast();
+
 //events lisners
   function pulseHeart(){
     myHeart.value = heartInput.value.checked;
@@ -61,8 +64,18 @@ import { usePanierStore } from '../store/store';
 
   function ajouterAuPanier(){
     axios.post(`/panier/store/${props.product.id}`)
-    .then(async () =>await panierStore.getPanier())
-    .catch(()=>{window.location.href='/inscription'})
+    .then(async () =>{
+      toast.success("produit ajouter au panier avec succes", {
+        timeout: 3000
+      });
+      await panierStore.getPanier();
+    })
+    .catch(()=>{
+      toast.warning("vous devez etre connecter pour ajouter un produit au pannier", {
+          timeout: 5000
+        });
+    // window.location.href='/inscription';
+    })
   }
 </script>
 

@@ -2,6 +2,8 @@ import './bootstrap';
 
 import { createApp, h } from 'vue'
 import { createPinia } from 'pinia'
+import Toast, { POSITION } from "vue-toastification";
+import "vue-toastification/dist/index.css";
 
 import Card from './components/Card.vue';
 import NbPanier from './components/nbPanier.vue';
@@ -11,6 +13,7 @@ import CardAdmin from './components/card-admin.vue';
 // import NavBar from './components/nav-bar.vue';
 const app = createApp();
 const pinia = createPinia()
+app.use(Toast, { position: POSITION.BOTTOM_RIGHT});
 app.use(pinia)
 app.component("card",Card);
 app.component("card-admin",CardAdmin);

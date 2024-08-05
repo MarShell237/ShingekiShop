@@ -54,10 +54,12 @@ import axios from 'axios';
 import helpers from '../composables';
 import { usePanierStore } from '../store/store';
 import { ref } from 'vue';
+import { useToast } from 'vue-toastification';
 
   const { formatteNombre } = helpers();
   const props = defineProps(['panier','villes'])
   const panierStore = usePanierStore();
+  const toast = useToast();
 
   let panierQuantite = ref(props.panier.quantite);
   let panierVille = ref(props.panier.ville.id);
@@ -69,7 +71,11 @@ import { ref } from 'vue';
     })
     .then(async (response)=> {
       // console.log(response);
-      await panierStore.getPanier()})
+      await panierStore.getPanier();
+      toast.success("panier mis a jour avec success", {
+        timeout: 5000
+      });
+    })
     .catch(err => {
       // console.log(err);
       errorMsg.value=err.response.data.message});
@@ -78,7 +84,11 @@ import { ref } from 'vue';
   async function destroy(id){
     if(confirm('voulez vous vraiment suprimer ce produit du panier ?')){
       await axios.delete(`/panier/destroy/${id}`)
-      .then(async () =>await panierStore.getPanier());
+      .then(async () =>{await panierStore.getPanier();
+        toast.success("panier supprimer avec succes", {
+        timeout: 5000
+      });
+      });
     }
   }
 </script>

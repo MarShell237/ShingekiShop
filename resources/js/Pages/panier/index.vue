@@ -25,15 +25,23 @@
   import panier from '../../components/panier.vue';
   import { usePanierStore } from '../../store/store';
   import helpers from '../../composables';
+import { useToast } from 'vue-toastification';
 
   const panierStore = usePanierStore();  
 
   const { formatteNombre } = helpers();
+
+  const toast = useToast();
+
   
   async function destroyAll(){
     if(confirm('voulez vous supprimer tout le contenu du panier ?')){
       await axios.delete(`/panier/destroyAll`)
-      .then(async () =>await panierStore.getPanier());
+      .then(async () =>{await panierStore.getPanier();
+        toast.success("panier completement supprimer avec success", {
+        timeout: 5000
+      });
+      });
     }
   }
 
