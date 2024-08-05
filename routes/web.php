@@ -27,6 +27,7 @@ Route::view('/notAuthorize','admin.notAuthorize')->name('notAuthorize');
 
 Route::prefix('/admin')->name('admin.')->middleware('auth:admin')->group(function (){
     Route::resource('/product',ProductController::class)->except(['show']);
+    // Route::delete('/product/destroy/{product}',[ProductController::class,'destroy']);
     Route::resource('/article',ArticleController::class)->except(['show']);
 });
 Route::get('/adminLogin',[AdminController::class,'login'])->name('adminLogin')->middleware('guest:admin');
@@ -40,7 +41,7 @@ Route::prefix('/panier')->name('panier.')->middleware('auth:web')->group(functio
   Route::delete('/destroy/{panier}',[PanierController::class,'destroy'])->name('destroy');
   // Route::get('/destroy/{product}',[PanierController::class,'destroy'])->name('destroy');
   Route::put('/update/{panier}',[PanierController::class,'update'])->name('update');
-  Route::get('/destroyAll',[PanierController::class,'destroyAll'])->name('destroyAll');
+  Route::delete('/destroyAll',[PanierController::class,'destroyAll'])->name('destroyAll');
   Route::get('/tous-les-paniers',[PanierController::class,'getPaniers']);
 });
 

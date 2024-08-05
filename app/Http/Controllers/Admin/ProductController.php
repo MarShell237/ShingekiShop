@@ -86,6 +86,8 @@ class ProductController extends Controller
     {
         Storage::disk('public')->delete($product->image);
         $product->delete();
-        return to_route('admin.product.index')->with('success','le produit a ete supprimer');
+        // return to_route('admin.product.index')->with('success','le produit a ete supprimer');
+        session()->flash('success','le produit a ete supprimer');
+        return response()->json();
     }
 }

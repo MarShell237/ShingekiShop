@@ -15,17 +15,10 @@ class PanierController extends Controller
 
 
   /**
-     * Display a listing of the resource.
-     */
-    public function index2()
-    {
-      $paniers=Panier::where('user_id',Auth::user()->id)->orderBy('ville_id')->get();
-      $prixTotal = 0;
-      foreach ($paniers as $key => $panier) {
-        $prixTotal += $panier->product->price * $panier->quantite;
-      }
-      $villes=Ville::all();
-      return view('panier.index',compact('paniers','prixTotal','villes'));
+   * Display a listing of the resource.
+   */
+    public function index(){
+      return view('panier.index');
     }
 
     public function getPaniers(){
@@ -45,22 +38,6 @@ class PanierController extends Controller
         ]);
     }
 
-    public function index(){
-      $paniers=Panier::where('user_id',Auth::user()->id)->with(['product','ville'])->orderBy('ville_id')->get();
-      $prixTotal = 0;
-      $quantiteTotal = 0;
-      foreach ($paniers as $key => $panier) {
-        $prixTotal += $panier->product->price * $panier->quantite;
-        $quantiteTotal += $panier->quantite;
-      }
-      // dump($paniers->count());
-      return Inertia::render('panier/index',[
-        'allPaniers' => $paniers,
-        'villes' => Ville::all(),
-        'prixTotal' => $prixTotal,
-        'quantiteTotal' => $quantiteTotal,
-      ]);
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -136,6 +113,6 @@ class PanierController extends Controller
 
       public function destroyAll(){
         Panier::query()->delete();
-        return redirect()->route('panier.index');
+        return response()->json();
     }
 }

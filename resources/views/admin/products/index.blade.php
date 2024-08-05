@@ -1,6 +1,6 @@
 @extends('admin.admin')
 @section('title','Shingeki Shop - Admin - Accueil')
-@vite(['resources/css/admin/products/index.css','resources/css/admin/products/card.css'])
+@vite(['resources/css/admin/products/index.css'])
 @section('content')
     <section>
         <div class="entete">
@@ -10,8 +10,9 @@
     </section>
     <section>
         @forelse ($products as $product)
-            {{-- <card-admin :valeur={{ $product }}></card-admin> --}}
-            @include('partials._card-admin',$product)
+            {{-- @include('partials._card-admin',$product) --}}
+            <card-admin :product="{{$product}}" slug="{{$product->getSlug()}}"></card-admin>
+
         @empty
             <h2>Aucun produit a afficher pour l'instant</h2>
         @endforelse

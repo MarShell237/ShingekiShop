@@ -2,9 +2,7 @@
     <div class="cards-accueil">
         <div class="card">
             <div class="card-top">
-                    <img :src="img" alt="" @click="showProduct">
-                <label :for="'checkbox'+props.product.id"><i class="fa fa-heart" :class="{'i-am-pulse' : myHeart}" :id="'label'+props.product.id" @click="pulseHeart"></i></label>
-                <input type="checkbox" name="" :id="'checkbox'+props.product.id" ref="heartInput" @change="pulseHeart">
+                    <img :src="img" alt="">
             </div>
 
             <div class="card-bottom">
@@ -20,10 +18,18 @@
                     <p>{{props.product.nb_vote}}</p>
                 </div>
                 <p>{{formatteNombre(props.product.price)}} fcfa</p>
-                <button @click="ajouterAuPanier">
-                    <span>Ajouter au panier</span>
-                    <i class="fa fa-cart-shopping"></i>
-                </button>
+                <div style="display: flex;justify-content:flex-end;gap:10px">
+                  <button
+                    @click="update(product.id)"
+                    style="background-color:rgb(20, 147, 220);padding:8px;border-radius:10px;color:white;font-size:20px;border-width:0;cursor: pointer;  border: 1px outset grey;">
+                    mettre a jour
+                  </button>
+                  <button
+                    @click="destroy(product.id)"
+                    style="background-color:crimson;padding:8px;border-radius:10px;color:white;font-size:20px;border-width:0;cursor: pointer;  border: 1px outset grey;">
+                      Supprimer 
+                  </button>
+                </div>
             </div>
         </div>
     </div>    
@@ -37,32 +43,32 @@ import helpers from '../composables';
 import { usePanierStore } from '../store/store';
 
   const { formatteNombre } = helpers();
-  const props = defineProps(['product','slug'])
+  const props = defineProps(['product'])
   const img =props.product.image
   const myHeart = ref(false);
   let heartInput = ref(null);
   const panierStore = usePanierStore();
-//events lisners
-  function pulseHeart(){
-    myHeart.value = heartInput.value.checked;
-  }
 
   function verifyIfIsActive(isOn){
     return isOn > 0;
   }
 
 //requettes http
-  function showProduct(){
-    axios.get(`/client/product/${props.slug}/${props.product.id}`)
-    .then(()=>{window.location.href=`/client/product/${props.slug}/${props.product.id}`})
-    // .catch(()=>{window.location.href='/inscription'})
-
+async function update(id){
+    await axios.get(`product/${id}/edit`)
+    .then(()=>window.location.href = `product/${id}/edit`)
+    .catch(err => {
+      // console.log(err);
+      });    
   }
-
-  function ajouterAuPanier(){
-    axios.post(`/panier/store/${props.product.id}`)
-    .then(async () =>await panierStore.getPanier())
-    .catch(()=>{window.location.href='/inscription'})
+  
+  async function destroy(id){
+    if(confirm('voulez vous vraiment suprimer ce produit ?')){
+      await axios.delete(`product/${id}`)
+      .then(()=>window.location.href = 'product')
+      .catch(err => console.log(err)
+      );
+    }
   }
 </script>
 
@@ -89,23 +95,6 @@ import { usePanierStore } from '../store/store';
   .card .card-top img{
     width: 200px;
     height: 200px;
-    cursor: pointer;
-  }
-
-  .card .card-top .fa-heart{
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    scale: 2;
-    transition: 1s;
-    animation-duration: 1.5s;
-    animation-fill-mode: forwards;
-    animation-timing-function: ease-out;
-    cursor: pointer;
-  }
-
-  .card .card-top input{
-      display: none;
   }
 
   .card .card-bottom{
@@ -120,11 +109,6 @@ import { usePanierStore } from '../store/store';
     line-clamp: 1;
     -webkit-line-clamp: 1;
     overflow: hidden;
-  }
-
-  .card .card-description:hover{
-    text-decoration: underline;
-    cursor: pointer;
   }
 
   .card .card-bottom > p{
@@ -167,59 +151,7 @@ import { usePanierStore } from '../store/store';
     background-color: gold;
   }
 
-  .card .card-bottom button{
-    position: absolute;
-    background-color: grey;
-    color: white;
-    border-width: 0;
-    padding: 10px;
-    border-radius: 5px;
-    right: 10px;
-    background-color: #142C4C;
-    border: 1px outset grey;
-    transition: 200ms;
-    cursor: pointer;
+button:active{
+    border: .2px inset black !important;
   }
-
-  .card .card-bottom button:hover, .card .card-bottom button:hover .fa-cart-shopping{
-    color: gold;
-  }
-
-  .card .card-bottom button:active{
-    border: .2px solid grey;
-  }
-
-  .i-am-pulse{
-    animation-name: pulse;
-  }
-
-  @keyframes pulse {
-    0%{
-      scale: 2;
-      color: pink;
-    }
-    
-    15%{
-      color: greenyellow;
-    }
-    
-    30%{
-      color: rgb(207, 3, 71);
-    }
-    
-    60%{
-      scale: 3;
-      color: rgb(252, 43, 43);
-    }
-    
-    80%{
-      color: green;
-    }
-
-    100%{
-      scale: 2;
-      color: red;
-      text-shadow: .5px 0 1px black;
-    }
-  }    
 </style>

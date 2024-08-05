@@ -6,7 +6,7 @@
     @vite(['resources/css/style.css','resources/css/all.min.css','resources/css/card.css'])
     @vite('resources/js/app.js')
     <title>Shingeki Shop - panier</title>
-    @inertiaHead
+    {{-- @inertiaHead --}}
   </head>
   <body id="root">
     <nav id="#root">
@@ -78,6 +78,6 @@
     <main>
       <index></index>
     </main>
-    @inertia
+    {{-- @inertia --}}
   </body>
 </html>

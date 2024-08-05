@@ -13,38 +13,28 @@
           Commander
         </button>
       </a>
-      <a href="/panier/destroyAll">
-        <button style="background-color:crimson;padding:15px;font-size:20px;color:white;border-width:0;border-radius:10px;  border: 1px outset black;">
+        <button 
+        @click="destroyAll"
+        style="background-color:crimson;padding:15px;font-size:20px;color:white;border-width:0;border-radius:10px;  border: 1px outset black;">
           Supprimer le panier
         </button>
-      </a>
 </template>
 
 <script setup>
   import { onMounted,ref } from 'vue';
   import panier from '../../components/panier.vue';
-import { usePanierStore } from '../../store/store';
+  import { usePanierStore } from '../../store/store';
   import helpers from '../../composables';
 
   const panierStore = usePanierStore();  
 
   const { formatteNombre } = helpers();
-
-  function update(id){
-    console.log(panierQuantite);
-    console.log(panierVille);
-
-    axios.put(`panier/update/${id}`,{
-      quantite:panierQuantite,
-      ville:panierVille
-    })
-    .then(response=> console.log(response))
-    .catch(err => console.log(err));
-  }
   
-  async function destroy(id){
-    await axios.delete(`/panier/destroy/${id}`)
-    .then(async () =>await panierStore.getPanier());
+  async function destroyAll(){
+    if(confirm('voulez vous supprimer tout le contenu du panier ?')){
+      await axios.delete(`/panier/destroyAll`)
+      .then(async () =>await panierStore.getPanier());
+    }
   }
 
   onMounted(async ()=> await panierStore.getPanier())

@@ -76,8 +76,10 @@ import { ref } from 'vue';
   }
   
   async function destroy(id){
-    await axios.delete(`/panier/destroy/${id}`)
-    .then(async () =>await panierStore.getPanier());
+    if(confirm('voulez vous vraiment suprimer ce produit du panier ?')){
+      await axios.delete(`/panier/destroy/${id}`)
+      .then(async () =>await panierStore.getPanier());
+    }
   }
 </script>
 

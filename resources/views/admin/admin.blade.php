@@ -19,7 +19,7 @@
     @vite('resources/js/app.js')
 
 </head>
-<body id="app">
+<body id="root">
     <nav>
         <div class="nav-bar">
             <a href="{{ route('admin.product.index') }}"><img src="{{Vite::asset('resources/images/logo-removebg-preview (5).png')}}" alt="" class="logo"></a>
