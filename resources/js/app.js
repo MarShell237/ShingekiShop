@@ -1,5 +1,8 @@
 import './bootstrap';
-
+import.meta.glob([
+  '../images/**',
+  '../fonts/**',
+]);
 import { createApp, h } from 'vue'
 import { createPinia } from 'pinia'
 import Toast, { POSITION } from "vue-toastification";

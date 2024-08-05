@@ -65,7 +65,7 @@
 
 
         <ul class="circles">
-            <li><img src="{{Vite::asset('images/eren-formulaire.jpg')}}" alt=""></li>
+            {{-- <li><img src="{{Vite::asset('images/eren-formulaire.jpg')}}" alt=""></li> --}}
             <li></li>
             <li></li>
             <li></li>
