@@ -7,8 +7,8 @@
         <h1>Tous Les {{$filter_title}}</h1>
         <section>
             @forelse ($products as $product)
-                {{-- <card :valeur="{{$product}}"></card> --}}
-                <card :valeur="{{$product}}" slug="{{$product->getSlug()}}"></card>
+                {{-- <card :product="{{$product}}"></card> --}}
+                <card :product="{{$product}}" slug="{{$product->getSlug()}}"></card>
                 @empty
                 <h2>Aucun {{$filter_title}} Pour L'instant</h2>
             @endforelse

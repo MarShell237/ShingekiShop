@@ -8,8 +8,8 @@
             @csrf
             @method($article->exists ? 'PUT' : 'POST')
             @include('partials._input',['type'=>'file','label'=>'Image d\'article','name'=>'imagearticle',"value"])
-            @include('partials._input',['label'=>'Nom de l\'article','name'=>'namearticle','placeholder'=>'entrer le nom du produit','value'=>$article->name])
-            @include('partials._input',['type'=>'textarea','label'=>'Description','name'=>'descriptionarticle','placeholder'=>'entrer La description du produit','value'=>$article->description])
+            @include('partials._input',['label'=>'Nom de l\'article','name'=>'namearticle','placeholder'=>'entrer le nom du produit','value'=>$article->name_article])
+            @include('partials._input',['type'=>'textarea','label'=>'Description','name'=>'descriptionarticle','placeholder'=>'entrer La description du produit','value'=>$article->description_article])
             <button>
                 @if ($article->exists)
                     Modifier

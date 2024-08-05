@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
 
+*{
+  box-sizing: border-box;
+}
+
 body{
   background-color: #1F1F1F;
   color: white;
@@ -65,7 +69,7 @@ nav{
   height: 80%;
   transition: 200ms;
   padding: 0 5px;
-  cursor: context-menu;
+  cursor: not-allowed;
 }
 
 .nav-bar form{
@@ -146,4 +150,12 @@ nav{
   margin-top: 100px;
   padding: 20px;
   border-radius: 10px;
+}
+
+.noselect {
+  user-select: none; /*Standard syntax */
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE 10+, Edge */
+  user-select: contain;
 }

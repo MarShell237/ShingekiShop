@@ -3,23 +3,23 @@
         <div class="card">
             <div class="card-top">
                     <img :src="img" alt="" @click="showProduct">
-                <label :for="'checkbox'+props.valeur.id"><i class="fa fa-heart" :class="{'i-am-pulse' : myHeart}" :id="'label'+props.valeur.id" @click="pulseHeart"></i></label>
-                <input type="checkbox" name="" :id="'checkbox'+props.valeur.id" ref="heartInput" @change="pulseHeart">
+                <label :for="'checkbox'+props.product.id"><i class="fa fa-heart" :class="{'i-am-pulse' : myHeart}" :id="'label'+props.product.id" @click="pulseHeart"></i></label>
+                <input type="checkbox" name="" :id="'checkbox'+props.product.id" ref="heartInput" @change="pulseHeart">
             </div>
 
             <div class="card-bottom">
-                <p class="card-description" @click="showProduct">{{props.valeur.name}}</p>
+                <p class="card-description" @click="showProduct">{{props.product.name}}</p>
                 <div class="note">
                     <div class="stars">
-                        <div class="star" :class="{'active':verifyIfIsActive(props.valeur.note)}"></div>
-                        <div class="star" :class="{'active':verifyIfIsActive(props.valeur.note-1)}"></div>
-                        <div class="star" :class="{'active':verifyIfIsActive(props.valeur.note-2)}"></div>
-                        <div class="star" :class="{'active':verifyIfIsActive(props.valeur.note-3)}"></div>
-                        <div class="star" :class="{'active':verifyIfIsActive(props.valeur.note-4)}"></div>
+                        <div class="star" :class="{'active':verifyIfIsActive(props.product.note)}"></div>
+                        <div class="star" :class="{'active':verifyIfIsActive(props.product.note-1)}"></div>
+                        <div class="star" :class="{'active':verifyIfIsActive(props.product.note-2)}"></div>
+                        <div class="star" :class="{'active':verifyIfIsActive(props.product.note-3)}"></div>
+                        <div class="star" :class="{'active':verifyIfIsActive(props.product.note-4)}"></div>
                     </div>
-                    <p>{{props.valeur.nb_vote}}</p>
+                    <p>{{props.product.nb_vote}}</p>
                 </div>
-                <p>{{formatteNombre(props.valeur.price)}} fcfa</p>
+                <p>{{formatteNombre(props.product.price)}} fcfa</p>
                 <button @click="ajouterAuPanier">
                     <span>Ajouter au panier</span>
                     <i class="fa fa-cart-shopping"></i>
@@ -32,13 +32,16 @@
 
 <script setup>
   import axios from 'axios';
-import { onMounted, ref } from 'vue';
+  import { onMounted, ref } from 'vue';
+import helpers from '../composables';
+import { usePanierStore } from '../store/store';
 
-  const props = defineProps(['valeur','slug'])
-  const img =props.valeur.image
+  const { formatteNombre } = helpers();
+  const props = defineProps(['product','slug'])
+  const img =props.product.image
   const myHeart = ref(false);
   let heartInput = ref(null);
-
+  const panierStore = usePanierStore();
 //events lisners
   function pulseHeart(){
     myHeart.value = heartInput.value.checked;
@@ -48,24 +51,17 @@ import { onMounted, ref } from 'vue';
     return isOn > 0;
   }
 
-
-//helpers
-  function formatteNombre(nombre) {
-  const regex = /(\d)(?=(?:\d{3})+$)/g;
-  return nombre.toString().replace(regex, '$1 ');
-  }
-
 //requettes http
   function showProduct(){
-    axios.get(`/client/product/${props.slug}/${props.valeur.id}`)
-    .then(()=>{window.location.href=`/client/product/${props.slug}/${props.valeur.id}`})
+    axios.get(`/client/product/${props.slug}/${props.product.id}`)
+    .then(()=>{window.location.href=`/client/product/${props.slug}/${props.product.id}`})
     // .catch(()=>{window.location.href='/inscription'})
 
   }
 
   function ajouterAuPanier(){
-    axios.post(`/panier/store/${props.valeur.id}`)
-    // .then(()=>{window.location.href=`/panier`}).
+    axios.post(`/panier/store/${props.product.id}`)
+    .then(async () =>await panierStore.getPanier())
     .catch(()=>{window.location.href='/inscription'})
   }
 </script>

@@ -10,9 +10,9 @@
 </head>
 <body>
 <section>
-    <img src="{{"/storage/".$article->imagearticle}}" alt="">
-    <h1>{{$article->namearticle}}</h1>
-    <p>{!!$article->descriptionarticle!!}</p>
+    <img src="{{$article->image_article}}" alt="">
+    <h1>{{$article->name_article}}</h1>
+    <p>{!!$article->description_article!!}</p>
 
     <a href="/blog" class="retour">Retour a l'accueil</a>
 </section>

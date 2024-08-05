@@ -1,20 +1,83 @@
-    @vite(['resources/css/panier.css'])
-    @vite(['resources/css/partials/input.css','resources/css/partials/select.css','resources/css/panier.css'])
-@extends('base')
-@section('content')
-      <h1 style="font-size: 90px;color:gold;margin-bottom:0;margin-top: 100px">Pannier</h1>
-      @forelse ($paniers as $panier )
-        @include('partials._panier',['panier'=>$panier])
-      @empty
-        <p style="font-size: 70px;text-align:center;">Votre panier est vide</p>
-      @endforelse
-
-      <hr>
-      <h2 style="font-size: 50px">Sommaire</h2>
-          <div class="col" style="font-size:30px">Nombre de produit: <span style="color: gold">{{count($paniers)}}</span> produit(s) dans le panier</div>                    
-          <div style="font-size: 30px;padding-top:10px;text-decoration:underline;">Prix Total: </div>
-          <div class="col text-right" style="color: gold;font-size:80px;"> {{number_format($prixTotal,0,' ','.')}} FCFA </div>                  
-          <a href="{{route('facture.store')}}"><button class="btn" style="background-color:#32A2E1;padding:15px;font-size:20px;color:white;border-width:0;border-radius:10px;margin:0 20px 0 0;border: 1px outset black;">Commander</button></a>
-          <a href="{{route('panier.destroyAll')}}"><button style="background-color:crimson;padding:15px;font-size:20px;color:white;border-width:0;border-radius:10px;  border: 1px outset black;">Supprimer le panier</button></a>
-      </div>
-@endsection
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    @vite(['resources/css/style.css','resources/css/all.min.css','resources/css/card.css'])
+    @vite('resources/js/app.js')
+    <title>Shingeki Shop - panier</title>
+    @inertiaHead
+  </head>
+  <body id="root">
+    <nav id="#root">
+      <div class="nav-bar">
+        <a href="/"><img src="{{Vite::asset('resources/images/logo-removebg-preview (5).png')}}" alt="" class="logo"></a>
+      @auth
+        <div class="localisation noselect">
+          <i class="fa fa-location-dot"></i>
+          <span>Adresse de livraison:</span>
+          <span>{{ Auth::user()->ville->name }}</span>
+        </div>
+      @endauth
+      @guest
+        <div class="localisation noselect">
+          <i class="fa fa-location-dot"></i>
+          <span>L'adresse de livraison</span>
+          <span>s'afficheras ici</span>
+        </div>
+      @endguest
+        <form action="" method="GET">
+            <div class="search-bar">
+                <input type="search" placeholder="Rechercher..." name="searchValue">
+                <i class="fa fa-search"></i>
+            </div>
+        </form>
+        <div class="options">
+            <a target="_blank" href="https://wa.me/237697815095" alt="notre whatsapp" title="Notre whatsapp"><i class="fa fa-phone"></i><span>service client</span></a>
+        </div>
+        <div class="options">
+            <a href="{{route('client.article.index')}}">
+                <i class="fa fa-book"></i>
+                <span>blog</span>
+            </a>
+        </div>
+        @auth
+            <div class="options"  style="display: inline">
+                <form action="{{ route('login') }}" method="POST" style="display: inline">
+                    @csrf
+                    @method("DELETE")
+                    <button style="all:unset;display: inline-flex;flex-direction:column;align-items:center;">
+                        <i class="fa fa-right-from-bracket"></i>
+                        <span>deconnection</span>
+                    </button>
+                </form>
+            </div>    
+        @endauth
+        @guest
+            <div class="options">
+                <a href="{{ route('login') }}"><i class="fa fa-circle-user"></i><span>connection</span></a>
+            </div>    
+        @endguest
+        <div class="options">
+        <a href="{{route('panier.index')}}" style="position: relative"> 
+            <i class="fa fa-cart-shopping"></i>
+            <span >panier</span>
+            <nb-panier></nb-panier>
+        </a>
+        </div>
+        </div>
+        @if (strpos(Route::currentRouteName(),'product') || Route::currentRouteName() === '/')
+            <div class="filter-bar">
+                <a href="{{ route('client.product.index') }}"><button>Tout</button></a>
+                @foreach ($categories as $categorie)
+                    <a href="{{ route('client.product.filter',$categorie->id) }}"><button>{{ $categorie->name }}</button></a>
+                @endforeach
+              </div>
+          @endif
+    </nav>
+    <main>
+      <index></index>
+    </main>
+    @inertia
+  </body>
+</html>

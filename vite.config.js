@@ -14,6 +14,10 @@ export default defineConfig({
     resolve:{
         alias:{
             vue:"vue/dist/vue.esm-bundler.js"
-        }
+        },
+        resolve: name => {
+          const pages = import.meta.glob('./Pages/**/*.vue', { eager: true })
+          return pages[`./Pages/${name}.vue`]
+        },
     }
 });

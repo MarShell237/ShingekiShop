@@ -19,19 +19,19 @@
     @vite('resources/js/app.js')
 
 </head>
-<body id="app">
+<body id="root">
   <nav>
     <div class="nav-bar">
       <a href="/"><img src="{{Vite::asset('resources/images/logo-removebg-preview (5).png')}}" alt="" class="logo"></a>
     @auth
-      <div class="localisation">
+      <div class="localisation noselect">
         <i class="fa fa-location-dot"></i>
         <span>Adresse de livraison:</span>
         <span>{{ Auth::user()->ville->name }}</span>
       </div>
     @endauth
     @guest
-      <div class="localisation">
+      <div class="localisation noselect">
         <i class="fa fa-location-dot"></i>
         <span>L'adresse de livraison</span>
         <span>s'afficheras ici</span>
@@ -70,10 +70,11 @@
           </div>    
       @endguest
       <div class="options">
-      <a href="{{route('panier.index')}}"> 
+      <a href="{{route('panier.index')}}" style="position: relative"> 
           <i class="fa fa-cart-shopping"></i>
           <span >panier</span>
-      </a>
+          <nb-panier></nb-panier>
+        </a>
       </div>
       </div>
       @if (strpos(Route::currentRouteName(),'product') || Route::currentRouteName() === '/')

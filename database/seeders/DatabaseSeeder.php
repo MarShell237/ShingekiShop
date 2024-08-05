@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
           VilleSeeder::class,
           ProductSeeder::class,
           UserSeeder::class,
-          AdminSeeder::class
+          AdminSeeder::class,
+          ArticleSeeder::class
       ]);
     }
 }

@@ -38,9 +38,10 @@ Route::prefix('/panier')->name('panier.')->middleware('auth:web')->group(functio
   Route::post('/store/{product}',[PanierController::class,'store'])->name('store');
   Route::post('/storeShow/{product}',[PanierController::class,'storeShow'])->name('storeShow');
   Route::delete('/destroy/{panier}',[PanierController::class,'destroy'])->name('destroy');
-  Route::get('/destroy/{product}',[PanierController::class,'destroy'])->name('destroy');
+  // Route::get('/destroy/{product}',[PanierController::class,'destroy'])->name('destroy');
   Route::put('/update/{panier}',[PanierController::class,'update'])->name('update');
   Route::get('/destroyAll',[PanierController::class,'destroyAll'])->name('destroyAll');
+  Route::get('/tous-les-paniers',[PanierController::class,'getPaniers']);
 });
 
 Route::prefix('/facture')->name('facture.')->middleware('auth:web')->group(function(){

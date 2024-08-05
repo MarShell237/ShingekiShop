@@ -1,6 +1,6 @@
 select{
     all: unset;
-    width: 100%;
+    /* width: 100%; */
     padding: 10px;
     font-size: large;
     font-family: Abel;

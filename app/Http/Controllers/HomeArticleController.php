@@ -26,7 +26,7 @@ class HomeArticleController extends Controller
     }
     public function index(){ 
         return view('article.index',[
-            'articles'=>Article::paginate(9),
+            'articles'=>Article::paginate(8),
         ]);
     }
     

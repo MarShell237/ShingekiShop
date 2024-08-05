@@ -33,7 +33,7 @@
                 <a href="{{ route('admin.product.index') }}" ><i class="fa fa-tag"></i><span>produits</span></a>
             </div>
             <div class="options">
-                <a href="{{ route('admin.article.index') }}"><i class="fa fa-book"></i><span>blog</span></a>
+                <a href="{{ route('admin.article.index') }}"><i class="fa fa-book"></i><span>articles</span></a>
             </div>
             <div class="options"  style="display: inline">
               <form action="{{ route('adminLogin') }}" method="POST" style="display: inline">

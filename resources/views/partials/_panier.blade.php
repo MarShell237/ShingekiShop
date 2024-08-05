@@ -15,22 +15,18 @@
           @csrf
           @method('PUT')
           <label for="quantite" style="font-size:20px;text-decoration:underline;">Quantites:</label>
-          @include('partials._input',['type'=>'number','name'=>'quantite'.$panier->id,'placeholder'=>'entrer le prix du produit','value'=>$panier->quantite])
+          @include('partials._input',['type'=>'number','name'=>'quantite'.$panier->id,'placeholder'=>'entrer la quantite de produit','value'=>$panier->quantite])
           <label for="ville_id"  class="label" style="font-size:20px;text-decoration:underline;">
             Adresse de livraison:
           </label>
           @include('partials._select',['name'=>'ville_id','value'=> $panier->ville_id,'categories'=>$villes])
-          <button  style="background-color:rgb(20, 147, 220);padding:8px;border-radius:10px;color:white;font-size:20px;border-width:0;cursor: pointer;  border: 1px outset black;">
-            mettre a jour le panier
-          </button>
+          <update-panier-btn :panier="{{ $panier }}"></update-panier-btn>
         </form>
         <form action="{{route('panier.destroy',$panier)}}" method="post">
           {{-- @dd($panier) --}}
-            @csrf
-            @method("DELETE")
-            <button  style="background-color:crimson;padding:12px;border-radius:10px;color:white;font-size:20px;border-width:0;cursor: pointer;  border: 1px outset black;">
-              Supprimer du pannier
-            </button>
+          @csrf
+          @method("DELETE")
+          <delete-panier-btn :panier="{{ $panier }}"></delete-panier-btn>
         </form>
       </div>
 </div> 
