@@ -40,14 +40,12 @@
   import axios from 'axios';
   import { onMounted, ref } from 'vue';
 import helpers from '../composables';
-import { usePanierStore } from '../store/store';
 
   const { formatteNombre } = helpers();
   const props = defineProps(['product'])
   const img =props.product.image
   const myHeart = ref(false);
   let heartInput = ref(null);
-  const panierStore = usePanierStore();
 
   function verifyIfIsActive(isOn){
     return isOn > 0;
