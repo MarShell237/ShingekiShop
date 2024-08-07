@@ -12,13 +12,14 @@ use Inertia\Inertia;
 
 class PanierController extends Controller
 {
-
-
   /**
    * Display a listing of the resource.
    */
     public function index(){
-      return view('panier.index');
+      return view('panier.index',[
+        'paniers' => Panier::where('user_id',Auth::user()->id)->with(['product','ville'])->orderBy('ville_id')->get(),
+        'villes' => Ville::all()
+      ]);
     }
 
     public function getPaniers(){

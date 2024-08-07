@@ -16,7 +16,7 @@
     <title>@yield('title')</title>
 
     @vite(['resources/css/style.css','resources/css/all.min.css','resources/css/admin/admin.css'])
-    @vite('resources/js/app.js')
+    @vite(['resources/js/app.js','resources/js/responsive-navbar.js'])
 
 </head>
 <body id="root">
@@ -35,7 +35,7 @@
             <div class="options">
                 <a href="{{ route('admin.article.index') }}"><i class="fa fa-book"></i><span>articles</span></a>
             </div>
-            <div class="options"  style="display: inline">
+            <div class="options deconnection">
               <form action="{{ route('adminLogin') }}" method="POST" style="display: inline">
                   @csrf
                   @method("DELETE")
@@ -44,7 +44,7 @@
                       <span>deconnection</span>
                   </button>
               </form>
-          </div>   
+            </div>   
             <div class="admin-infos">
                 <div>
                     <span>{{Auth::user()->name}}</span>
@@ -52,7 +52,34 @@
                 </div>
                 <img src="{{Vite::asset('resources/images/admin/'.Auth::user()->image)}}" alt="">
             </div>
-        </div>
+            <div class="responsive-menu"></div>
+          </div>
+
+          <div class="responsive-nav-bar">
+            <div class="options">
+              <a href="{{ route('admin.product.index') }}" ><i class="fa fa-tag"></i><span>produits</span></a>
+          </div>
+          <div class="options">
+              <a href="{{ route('admin.article.index') }}"><i class="fa fa-book"></i><span>articles</span></a>
+          </div>
+          <div class="options deconnection">
+            <form action="{{ route('adminLogin') }}" method="POST" style="display: inline">
+                @csrf
+                @method("DELETE")
+                <button style="all:unset;display: inline-flex;flex-direction:column;align-items:center;">
+                    <i class="fa fa-right-from-bracket"></i>
+                    <span>deconnection</span>
+                </button>
+            </form>
+          </div>   
+          <div class="admin-infos">
+              <div>
+                  <span>{{Auth::user()->name}}</span><br>
+                  <small>{{Auth::user()->nametitan}}</small>
+              </div>
+              <img src="{{Vite::asset('resources/images/admin/'.Auth::user()->image)}}" alt="">
+          </div>
+          </div>
 
 
     </nav>

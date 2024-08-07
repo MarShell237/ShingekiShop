@@ -297,7 +297,23 @@ small{
   margin-left: 3px;
 }
 
+@media screen and (max-width:768px) {
+  form,.overlay-panel{
+    padding: 5px;
+  }
 
+  .overlay h1{
+    font-size: x-large;
+  }
+
+  .overlay p,button{
+    font-size: small;
+  }
+
+  button {
+    padding: 10px;
+  }
+}
 
 
 

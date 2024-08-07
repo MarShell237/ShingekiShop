@@ -12,7 +12,6 @@
         @forelse ($products as $product)
             {{-- @include('partials._card-admin',$product) --}}
             <card-admin :product="{{$product}}" slug="{{$product->getSlug()}}"></card-admin>
-
         @empty
             <h2>Aucun produit a afficher pour l'instant</h2>
         @endforelse

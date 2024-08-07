@@ -19,3 +19,18 @@ body{
     height: 60px;
     border-radius: 50%;
 }
+
+@media screen and (max-width:768px) {
+  .nav-bar .admin-infos{
+    display: none;
+  }
+
+  .responsive-nav-bar .admin-infos{
+    flex-direction: column !important;
+    align-items: center;
+  }
+
+  .responsive-nav-bar .admin-infos div{
+    text-align: center;
+  }
+}

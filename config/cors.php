@@ -31,4 +31,7 @@ return [
 
     'supports_credentials' => false,
 
+    'origins' => ['https://shingeki-shop.42web.io'],
+
+
 ];

@@ -42,6 +42,10 @@ nav{
   border-bottom-color:transparent;
 }
 
+div.options.deconnection{
+  display: inline
+}
+
 .filter-bar{
   margin-top: 90px;
   font-family: Abel;
@@ -52,7 +56,7 @@ nav{
   height: 52px;
 }
 
-.fa,.nav-bar span{
+.fa,.nav-bar span,.responsive-nav-bar span{
   color: white;
 }
 
@@ -72,7 +76,7 @@ nav{
   cursor: not-allowed;
 }
 
-.nav-bar form{
+.nav-bar form,.responsive-nav-bar form{
   margin-top: 14px;
   width: 45%;
 }
@@ -158,4 +162,170 @@ nav{
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE 10+, Edge */
   user-select: contain;
+}
+
+.responsive-nav-bar{
+  display: none;
+  position: fixed;
+  top: -1px;
+  right: 15;
+  background: linear-gradient(rgba(255, 255, 255,0.1),rgba(255,255,255,0.2));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255,0.18);
+  box-shadow: 0 80x 32px 0 rgba(255, 255, 255,0.37);
+  /* display: flex; */
+  flex-direction: column;
+  gap: 20px;
+  border-radius: 5px;
+  padding: 20px;
+  font-family: Abel;
+  z-index: 7;
+  margin-top: 100px;
+}
+
+.responsive-nav-bar  .decconection{
+  flex-direction: row;
+}
+
+.responsive-nav-bar a{
+  display: inline-flex;
+  /* flex-direction: column; */
+  align-items: center;
+  gap: 5px;
+  text-decoration: none;
+}
+
+.responsive-nav-bar form button{
+  flex-direction: row !important;
+}
+
+@media screen and (max-width:768px) {
+  /* nav ul.menu .options{
+    display: none;
+    }
+  
+    nav ul{
+      display: none;
+      }
+    
+    nav .menu li{
+      margin: 0;
+      font-size: medium;
+      }
+      
+      nav{
+        display: flex;
+        justify-content: space-between;
+        background-color: #212529;
+        }
+        
+        nav > a img{
+          display: initial;
+  }
+  
+  nav ul img{
+    display: none;
+    } 
+    
+    nav li a:hover {
+      box-shadow: 0 0 0 0px white;
+      border-radius: 0;
+      }
+      
+      nav li a:active {
+        transition: 0s;
+        }
+        
+        nav li a:active {
+          background-color: #1A2020;
+      scale: 110%;
+      text-shadow: 15px 15px 5px #000000;
+      transition: 0s;
+  }
+
+  .resp-img{
+    display: inline;
+  }
+   */
+
+  body{
+    padding: 0;
+  }
+
+  nav .nav-bar .options,.nav-bar div.options.deconnection{
+    display: none;
+  }
+  
+  .responsive-menu{
+      height: 50px;
+      width: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      cursor: pointer;
+  }
+  
+  .responsive-menu::after{
+    position: absolute;
+    content: "";
+    height: 3px;
+    background-color: #fff;
+    width: 28px;
+    box-shadow: 0 10px 0 #fff;
+      transform: translateY(-10px);
+      transition: 0.5s;
+    }
+    
+    .responsive-menu.active::after{
+    box-shadow: 0 0 0 #fff;
+    transform: rotate(45deg);
+  }
+  
+  .responsive-menu::before{
+    position: absolute;
+    content: "";
+    height: 3px;
+    background-color: #fff;
+    width: 28px;
+    transform: translateY(10px);
+    transition: 0.5s;
+  }
+  
+  .responsive-menu.active::before{
+    transform: rotate(-45deg);
+  }
+  
+  nav .responsive-nav-bar.responsive{
+    display: flex;
+  }
+
+  .filter-bar{
+    overflow: scroll;
+  }
+
+  .filter-bar button{
+    width: 90px;
+    height: 40px;
+    margin-right: 10px;
+  }
+  /* footer */    
+  .contact-link div{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+    
+  .contact-link div p{
+    text-align: center;
+  }
+}
+
+@media screen and (max-width:425px) {
+  .localisation{
+    display: none !important;
+  }
 }

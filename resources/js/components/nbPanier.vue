@@ -26,4 +26,10 @@ const panierStore = usePanierStore();
     font-size: small;
     border-radius: 100%;
   }
+
+  @media screen and (max-width:768px) {
+    span{
+      right: 30;
+    }
+  }
 </style>

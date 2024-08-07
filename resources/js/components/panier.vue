@@ -1,14 +1,14 @@
 <template>
   <hr>
-  <div class="single-pannier" style="background-color: rgb(255, 255, 255,0.20); padding:25px; border-radius:10px;display:flex;align-items:center;justify-content:space-around;" >
-  <div style="display:flex;gap:10px;width:50%">
-      <img :src="panier.product.image" style="width:100%;" alt="">
+  <div class="single-pannier">
+  <div class="primary-information">
+      <img :src="panier.product.image" class="image" alt="">
       <div>
           <p style="width: 100%;font-size:30px;font-weight:bold">{{panier.product.name}}</p>
           <p>{{ panier.product.description}}</p>
       </div>
   </div>
-  <div style="width: 30%;">
+  <div class="price-information">
     <p style="color: gold;font-size: 50px;font-weight:bold;text-align:center">
       {{formatteNombre(panier.product.price)}} Fcfa
     </p>
@@ -33,15 +33,10 @@
     </div>
 
     <div style="display: flex;justify-content:space-between">
-      <button
-      type="submit"
-        @click="update(panier.id)"
-        style="background-color:rgb(20, 147, 220);padding:8px;border-radius:10px;color:white;font-size:20px;border-width:0;cursor: pointer;  border: 1px outset black;">
+      <button @click="update(panier.id)" class="buttons update">
         mettre a jour le panier
       </button>
-      <button
-        @click="destroy(panier.id)"
-        style="background-color:crimson;padding:12px;border-radius:10px;color:white;font-size:20px;border-width:0;cursor: pointer;  border: 1px outset black;">
+      <button @click="destroy(panier.id)" class="buttons delete">
           Supprimer 
       </button>
     </div>
@@ -88,7 +83,9 @@ import { useToast } from 'vue-toastification';
         toast.success("panier supprimer avec succes", {
         timeout: 5000
       });
-      });
+      window.location.href = '/panier'
+      })
+      .catch(()=>toast.error('une erreur s\'est produite'));
     }
   }
 </script>
@@ -96,6 +93,69 @@ import { useToast } from 'vue-toastification';
 <style scoped>
   @import url('./../../css/partials/input.css');
   @import url('./../../css/partials/select.css');
+
+  .single-pannier{
+    background-color: rgb(255, 255, 255,0.20); 
+    padding:25px; 
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:space-around; 
+    box-shadow: 5px 5px 4px black;
+  }
+
+  .image{
+    width: 100%;
+  }
+
+  .primary-information{
+    display:flex;
+    gap:10px;
+    width:50%;
+  }
+
+  .price-information{
+    width: 30%;
+  }
+
+  .buttons{
+    border-radius:10px;
+    color:white;
+    font-size:20px;
+    border-width:0;
+    cursor: pointer;  
+    border: 1px outset black;
+  }
+
+  .update{
+    background-color:rgb(20, 147, 220);
+    padding:8px;
+  }
+
+  .delete{
+    background-color:crimson;
+    padding:12px;
+  }
+
+  @media screen and (max-width:768px) {
+    .single-pannier{
+      flex-direction: column;
+
+    }
+
+    .primary-information{
+      flex-direction: column;
+      width: 90%;
+    }
+
+    .price-information{
+      width: 90%;
+    }
+
+    .buttons{
+      font-size:12px;
+    }
+  }
 
   button:active{
     border: .2px inset grey !important;

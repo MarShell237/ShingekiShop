@@ -50,6 +50,12 @@
         button:active{
           border: 1px solid black !important;
         }
+
+        @media screen and (max-width:768px) {
+        p,th,td,h2,button,select{
+          font-size: 10px !important;
+        }
+      }
     </style>
 </head>
 

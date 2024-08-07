@@ -15,8 +15,8 @@
     <link rel="icon" href="{{Vite::asset('resources/images/logo3.png')}}">
     <title>@yield('title')</title>
 
-    @vite(['resources/css/style.css','resources/css/all.min.css','resources/css/card.css'])
-    @vite('resources/js/app.js')
+    @vite(['resources/css/style.css','resources/css/all.min.css'])
+    @vite(['resources/js/app.js','resources/js/responsive-navbar.js',])
 
 </head>
 <body id="root">
@@ -37,13 +37,50 @@
         <span>s'afficheras ici</span>
       </div>
     @endguest
-      <form action="" method="GET">
-          <div class="search-bar">
-              <input type="search" placeholder="Rechercher..." name="searchValue">
-              <i class="fa fa-search"></i>
-          </div>
-      </form>
-      <div class="options">
+    <form action="" method="GET">
+        <div class="search-bar">
+            <input type="search" placeholder="Rechercher..." name="searchValue">
+            <i class="fa fa-search"></i>
+        </div>
+    </form>
+    <div class="options">
+        <a target="_blank" href="https://wa.me/237697815095" alt="notre whatsapp" title="Notre whatsapp"><i class="fa fa-phone"></i><span>service client</span></a>
+    </div>
+    <div class="options">
+        <a href="{{route('client.article.index')}}">
+            <i class="fa fa-book"></i>
+            <span>blog</span>
+        </a>
+    </div>
+    @auth
+        <div class="options deconnection">
+            <form action="{{ route('login') }}" method="POST" style="display: inline">
+                @csrf
+                @method("DELETE")
+                <button style="all:unset;display: inline-flex;flex-direction:column;align-items:center;">
+                    <i class="fa fa-right-from-bracket"></i>
+                    <span>deconnection</span>
+                </button>
+            </form>
+        </div>    
+    @endauth
+    @guest
+        <div class="options">
+            <a href="{{ route('login') }}"><i class="fa fa-circle-user"></i><span>connection</span></a>
+        </div>    
+    @endguest
+    <div class="options">
+    <a href="{{route('panier.index')}}" style="position: relative"> 
+        <i class="fa fa-cart-shopping"></i>
+        <span>panier</span>
+        <nb-panier></nb-panier>
+      </a>
+    </div>
+    <div class="responsive-menu"></div>
+      </div>
+
+      <div class="responsive-nav-bar">
+        <div class="options">
           <a target="_blank" href="https://wa.me/237697815095" alt="notre whatsapp" title="Notre whatsapp"><i class="fa fa-phone"></i><span>service client</span></a>
       </div>
       <div class="options">
@@ -53,7 +90,7 @@
           </a>
       </div>
       @auth
-          <div class="options"  style="display: inline">
+          <div class="options deconnection">
               <form action="{{ route('login') }}" method="POST" style="display: inline">
                   @csrf
                   @method("DELETE")
@@ -72,19 +109,19 @@
       <div class="options">
       <a href="{{route('panier.index')}}" style="position: relative"> 
           <i class="fa fa-cart-shopping"></i>
-          <span >panier</span>
+          <span>panier</span>
           <nb-panier></nb-panier>
         </a>
       </div>
       </div>
-      @if (strpos(Route::currentRouteName(),'product') || Route::currentRouteName() === '/')
-          <div class="filter-bar">
-              <a href="{{ route('client.product.index') }}"><button>Tout</button></a>
-              @foreach ($categories as $categorie)
-                  <a href="{{ route('client.product.filter',$categorie->id) }}"><button>{{ $categorie->name }}</button></a>
-              @endforeach
-            </div>
-        @endif
+    @if (strpos(Route::currentRouteName(),'product') || Route::currentRouteName() === '/')
+        <div class="filter-bar">
+            <a href="{{ route('client.product.index') }}"><button>Tout</button></a>
+            @foreach ($categories as $categorie)
+                <a href="{{ route('client.product.filter',$categorie->id) }}"><button>{{ $categorie->name }}</button></a>
+            @endforeach
+          </div>
+      @endif
   </nav>
 
   @yield('content') 

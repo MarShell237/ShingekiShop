@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
-@import url('resources/css/variables.css');
+/* @import url('resources/css/variables.css'); */
 
 .input-container{
     display: flex;
@@ -32,7 +32,7 @@ textarea{
 input:focus{
     outline-color: unset;
     border-color: unset;
-    box-shadow: 0 0 10px var(--couleur-input),0 0 5px rgb(0, 191, 255);
+    box-shadow: 0 0 10px rgba(187, 218, 255, 0.4),0 0 5px rgb(0, 191, 255);
 }
 
 .input-container small{

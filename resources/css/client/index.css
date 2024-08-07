@@ -49,3 +49,15 @@ footer .social-icons a:hover .fa-facebook{
 footer .social-icons a:hover .fa-instagram{
     color: #8A3AB9;
 }
+
+@media screen and (max-width:768px) {
+  body{
+    padding: 0 !important;
+    /* overflow-x: hidden; */
+  }
+
+  footer{
+    flex-direction: column;
+    text-align: center;
+}
+}
