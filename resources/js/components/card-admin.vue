@@ -50,6 +50,7 @@ import helpers from '../composables';
   function verifyIfIsActive(isOn){
     return isOn > 0;
   }
+  
 
 //requettes http
 async function update(id){
@@ -61,8 +62,16 @@ async function update(id){
   }
   
   async function destroy(id){
+    const requestOptions = {
+      method: "DELETE",
+      headers:{
+        accept:"application/json"
+      },
+      body: '',
+      redirect: "follow"
+    };
     if(confirm('voulez vous vraiment suprimer ce produit ?')){
-      await axios.delete(`product/${id}`)
+      await axios.delete(`product/${id}`,requestOptions)
       .then(()=>window.location.href = 'product')
       .catch(err => console.log(err)
       );

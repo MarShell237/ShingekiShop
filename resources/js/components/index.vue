@@ -35,8 +35,16 @@
 
   
   async function destroyAll(){
+    const requestOptions = {
+      method: "DELETE",
+      headers:{
+        accept:"application/json"
+      },
+      body: '',
+      redirect: "follow"
+    };
     if(confirm('voulez vous supprimer tout le contenu du panier ?')){
-      await axios.delete(`/panier/destroyAll`)
+      await axios.delete(`/panier/destroyAll`,requestOptions)
       .then(async () =>{await panierStore.getPanier();
         toast.success("panier completement supprimer avec success", {
         timeout: 5000

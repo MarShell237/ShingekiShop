@@ -783,7 +783,7 @@
     "src": "resources/images/téléchargement.jpeg"
   },
   "resources/js/app.js": {
-    "file": "assets/app-B5DWgC0D.js",
+    "file": "assets/app-D0EHqw3g.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -792,11 +792,11 @@
       "_pinia-CXLHYllx.js"
     ],
     "css": [
-      "assets/app-seqw1D9V.css"
+      "assets/app-BKbsVptF.css"
     ]
   },
   "resources/js/bootstrap.js": {
-    "file": "assets/bootstrap-nOliJJ0A.js",
+    "file": "assets/bootstrap-BrMkvbAH.js",
     "name": "bootstrap",
     "src": "resources/js/bootstrap.js",
     "isEntry": true,

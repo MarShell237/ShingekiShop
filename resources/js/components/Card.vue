@@ -63,7 +63,15 @@ import { useToast } from 'vue-toastification';
   }
 
   function ajouterAuPanier(){
-    axios.post(`/panier/store/${props.product.id}`)
+    const requestOptions = {
+      method: "POST",
+      headers:{
+        accept:"application/json"
+      },
+      body: '',
+      redirect: "follow"
+    };
+    axios.post(`/panier/store/${props.product.id}`,requestOptions)
     .then(async () =>{
       toast.success("produit ajouter au panier avec succes", {
         timeout: 3000

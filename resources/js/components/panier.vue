@@ -60,10 +60,18 @@ import { useToast } from 'vue-toastification';
   let panierVille = ref(props.panier.ville.id);
   let errorMsg = ref("");
   async function update(id){
-    await axios.put(`panier/update/${id}`,{
+    const requestOptions = {
+      method: "PUT",
+      headers:{
+        accept:"application/json"
+      },
+      body: {
       quantite:panierQuantite.value,
       ville_id:panierVille.value
-    })
+    },
+      redirect: "follow"
+    };
+    await axios.put(`panier/update/${id}`,requestOptions)
     .then(async (response)=> {
       // console.log(response);
       await panierStore.getPanier();
@@ -77,8 +85,16 @@ import { useToast } from 'vue-toastification';
   }
   
   async function destroy(id){
+    const requestOptions = {
+      method: "DELETE",
+      headers:{
+        accept:"application/json"
+      },
+      body: '',
+      redirect: "follow"
+    };
     if(confirm('voulez vous vraiment suprimer ce produit du panier ?')){
-      await axios.delete(`/panier/destroy/${id}`)
+      await axios.delete(`/panier/destroy/${id}`,requestOptions)
       .then(async () =>{await panierStore.getPanier();
         toast.success("panier supprimer avec succes", {
         timeout: 5000
