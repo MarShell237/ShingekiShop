@@ -25,5 +25,17 @@
       "CACHE_DRIVER": "array",
       "LOG_CHANNEL": "stderr",
       "SESSION_DRIVER": "cookie"
-  }
+  },
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/node",
+      "config": {
+        "runtime": "nodejs20.x",
+        "installCommand": "npm ci",
+        "buildCommand": "npm run build",
+        "outputDirectory": "public"
+      }
+    }
+  ]
 }
